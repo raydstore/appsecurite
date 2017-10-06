@@ -12,6 +12,7 @@ import { OrganizationChartModule } from 'primeng/primeng';
 import { Component, OnInit, ViewEncapsulation, Attribute } from '@angular/core';
 import { DataGridModule } from 'primeng/primeng';
 import { DropdownModule } from 'primeng/primeng';
+import { DialogModule } from 'primeng/primeng';
 
 @Component({
   selector: 'app-site',
@@ -25,7 +26,9 @@ export class SitesComponent implements OnInit {
   ltLabels: Label[] = [];
   labels: any[] = [{ label: 'Select Label', value: null }];
   selectedLabel: Label;
+  display: boolean = false;
 
+  
   constructor(private service: SiteService, private luService: LabelService) {
   }
 
@@ -161,4 +164,14 @@ export class SitesComponent implements OnInit {
       }
       );
   }
+
+  showDialog() {
+    this.display = true;
+  }
+
+  cancelCreate(input: HTMLInputElement) {
+    input.value = '';
+    this.display = false;
+  }
+
 }

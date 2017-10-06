@@ -27,6 +27,7 @@ import { TabViewModule } from 'primeng/primeng';
 import { CodeHighlighterModule } from 'primeng/primeng';
 import { TiltletaskComponent } from './page/tiltletask/tiltletask.component';
 import { InplaceModule } from 'primeng/primeng';
+import {DialogModule} from 'primeng/primeng';
 
 @NgModule({
   declarations: [
@@ -56,6 +57,7 @@ import { InplaceModule } from 'primeng/primeng';
     TreeTableModule,
     InplaceModule,
     DropdownModule,
+    DialogModule,
     CodeHighlighterModule,
     RouterModule.forRoot([
       { path: '', component: NavComponent},

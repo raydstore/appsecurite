@@ -1,7 +1,23 @@
 <p-organizationChart [value]="data" expanded="true" styleClass="company" class="a">
   <ng-template let-node pTemplate="sheet" styleClass="stchild">
     {{node.label}}
-    <p-inplace closable="closable" editor="true">
+    <p-dialog header="Godfather I" [(visible)]="display" modal="modal" width="300" [responsive]="true">
+      <input type="text" value="" pInputText #name>
+      <p-dropdown [options]="labels" [(ngModel)]="selectedLabel" [style]="{'width':'150px'}" filter="filter">
+        <ng-template let-label pTemplate="item">
+          <div class="ui-helper-clearfix">
+            {{label.label}}
+          </div>
+        </ng-template>
+      </p-dropdown>
+      <p-footer>
+        <button type="button" pButton icon="fa-check" (click)="newSite(node, name)" label="Yes"></button>
+        <button type="button" pButton icon="fa-close" (click)="canselCreate()" label="No"></button>
+      </p-footer>
+    </p-dialog>
+
+    <button type="button" (click)="showDialog()" pButton icon="fa-external-link-square" label="Show"></button>
+    <!-- <p-inplace closable="closable" editor="true">
       <span pInplaceDisplay>
         Click to Edit
     </span>
@@ -16,7 +32,7 @@
         </p-dropdown>
          <button class="btn btn-success btn-xs" (click) = "newSite(node, name)" type="submit"><i class="fa fa-plus"></i></button>
     </span>
-    </p-inplace>
+    </p-inplace> -->
     <button class="btn btn-danger btn-xs" (click)="deleteSite(node)">
                     <i class="fa fa-minus"></i>
                 </button>
