@@ -1,0 +1,54 @@
+<p-organizationChart [value]="data" expanded="true" styleClass="company" class="a">
+  <ng-template let-node pTemplate="sheet" styleClass="stchild">
+    {{node.label}}
+    <p-inplace closable="closable" editor="true">
+      <span pInplaceDisplay>
+        Click to Edit
+    </span>
+      <span pInplaceContent>
+        <input type="text" value="" pInputText #name>
+        <p-dropdown [options]="labels" [(ngModel)]="selectedLabel" [style]="{'width':'150px'}" filter="filter">
+          <ng-template let-label pTemplate="item">
+            <div class="ui-helper-clearfix" >
+               {{label.label}}
+            </div>
+          </ng-template>
+        </p-dropdown>
+         <button class="btn btn-success btn-xs" (click) = "newSite(node, name)" type="submit"><i class="fa fa-plus"></i></button>
+    </span>
+    </p-inplace>
+    <button class="btn btn-danger btn-xs" (click)="deleteSite(node)">
+                    <i class="fa fa-minus"></i>
+                </button>
+    <!-- <button class="btn btn-success btn-xs" ><i class="fa fa-plus"></i></button>
+        <button class="btn btn-danger btn-xs" >
+                    <i class="fa fa-minus"></i>
+                </button> -->
+
+  </ng-template>
+  <ng-template let-node pTemplate="branch" styleClass="stparent">
+    <div class="node-header ui-corner-top">{{node.label}}</div>
+    <div class="node-content">
+      <p-inplace closable="closable" editor="true">
+        <span pInplaceDisplay>
+        Click to Edit
+    </span>
+        <span pInplaceContent>
+        <input type="text" value="" pInputText #name>
+        <p-dropdown [options]="labels" [(ngModel)]="selectedLabel" [style]="{'width':'150px'}" filter="filter">
+          <ng-template let-label pTemplate="item">
+            <div class="ui-helper-clearfix" >
+               {{label.label}}
+            </div>
+          </ng-template>
+        </p-dropdown>
+         <button class="btn btn-success btn-xs" (click) = "newSite(node, name)" type="submit"><i class="fa fa-plus"></i></button>
+    </span>
+      </p-inplace>
+      <!--   <button class="btn btn-success btn-xs"><i class="fa fa-plus"></i></button>-->
+        <button class="btn btn-danger btn-xs" (click)="deleteSite(node)">
+                    <i class="fa fa-minus"></i>
+                </button> 
+    </div>
+  </ng-template>
+</p-organizationChart>

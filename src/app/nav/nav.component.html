@@ -1,0 +1,112 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="#">App Securité HSE</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+    aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Fichier</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Operation</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Impression</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Apropos</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link disabled" href="#">disable</a>
+      </li>
+    </ul>
+    <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
+  </div>
+</nav>
+<div class="page-header">
+<!--  <h1>Example page header <small>Subtext for header</small></h1> -->
+  <img src="../../../assets/hse_env.png" alt=""><img>
+</div>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-2">
+      <nav class="d-none d-sm-block bg-light sidebar">
+        <ul class="nav nav-pills flex-column">
+          <li class="nav-item">
+            <a class="nav-link active" href="#">Fichies <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLinkActive="active current" routerLink="/label">Label</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Mark</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLinkActive="active current" routerLink="/site">Site</a>
+          </li>
+        </ul>
+
+        <ul class="nav nav-pills flex-column">
+          <li class="nav-item">
+            <a class="nav-link" href="#">Type Objet</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Type Operation</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Unite de Mesure</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Activité</a>
+          </li>
+        </ul>
+
+        <ul class="nav nav-pills flex-column">
+          <li class="nav-item">
+            <a class="nav-link" href="#">Objet</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Instance</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLinkActive="active current" routerLink="/titletask">WorkSheet2</a>
+          </li>
+        </ul>
+      </nav>
+
+      <nav class="d-none d-sm-block bg-light sidebar">
+        <ul class="nav nav-pills flex-column">
+          <li class="nav-item">
+            <a class="nav-link active" href="#">Opération <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Instance Objet</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Planning de Verification</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Feuille de poste</a>
+          </li>
+        </ul>
+
+
+      </nav>
+    </div>
+
+    <div class="col-sm-8 container-fluid">
+      <router-outlet></router-outlet>
+    </div>
+    <div class="col-sm-2">
+
+    </div>
+  </div>
