@@ -28,6 +28,19 @@ import { CodeHighlighterModule } from 'primeng/primeng';
 import { TiltletaskComponent } from './page/tiltletask/tiltletask.component';
 import { InplaceModule } from 'primeng/primeng';
 import {DialogModule} from 'primeng/primeng';
+import { MarkComponent } from './page/mark/mark.component';
+import { Type } from './page/type.object/type.object.component';
+import { TypeObjectComponent } from './page/type-object/type-object.component';
+import { TypeOperationComponent } from './page/type-operation/type-operation.component';
+import { OperationComponent } from './page/operation/operation.component';
+import { ActivityComponent } from './page/activity/activity.component';
+import { ObjectComponent } from './page/object/object.component';
+import { InstanceComponent } from './page/instance/instance.component';
+import { UnitmeasureComponent } from './page/unitmeasure/unitmeasure.component';
+import { JobpostingComponent } from './page/jobposting/jobposting.component';
+import { TypeFormationComponent } from './page/type-formation/type-formation.component';
+import { FormationComponent } from './page/formation/formation.component';
+import { AlertComponent } from './page/alert/alert.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +51,20 @@ import {DialogModule} from 'primeng/primeng';
     NavComponent,
     OrganizationChartComponent,
     NotFoundComponent,
-    TiltletaskComponent
+    TiltletaskComponent,
+    MarkComponent,
+    Type.ObjectComponent,
+    TypeObjectComponent,
+    TypeOperationComponent,
+    OperationComponent,
+    ActivityComponent,
+    ObjectComponent,
+    InstanceComponent,
+    UnitmeasureComponent,
+    JobpostingComponent,
+    TypeFormationComponent,
+    FormationComponent,
+    AlertComponent
   ],
   imports: [
     BrowserModule,
