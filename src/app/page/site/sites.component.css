@@ -34,3 +34,10 @@
             text-align: center;
             border: 1px solid #495ebb;
         }
+
+        .panel-scroll {
+            overflow-x:auto;
+            overflow-y:scroll;
+           /*  width: 800px; */
+            height: 100%;
+        }

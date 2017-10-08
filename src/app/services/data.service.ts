@@ -13,10 +13,10 @@ export class DataService {
     headers = new Headers();
 
     constructor(private url, private http: Http) {
-        // this.headers.append('Content-Type', 'application/json');
-        this.headers.append('Access-Control-Allow-Origin', '*');
+        this.headers.append('Content-Type', 'application/json');
+       /*  this.headers.append('Access-Control-Allow-Origin', '*');
         this.headers.append('Access-Control-Allow-Methods', 'OPTIONS, GET, POST, PUT, DELETE');
-        this.headers.append('Access-Control-Allow-Headers', 'Content-Type');
+        this.headers.append('Access-Control-Allow-Headers', 'Content-Type'); */
      }
 
     getAll() {

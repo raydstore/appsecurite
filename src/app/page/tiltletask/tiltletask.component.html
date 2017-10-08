@@ -1,13 +1,13 @@
-<p-treeTable [value]="data" [style]="{'margin-top':'50px'}">
+<p-treeTable [value]="data" [style]="{'margin-top':'50px'}" var="node">
   <p-header>WorkSheet Templating</p-header>
-  <p-column field="name" header="Name">
+  <p-column field="name" header="Name" > 
     <ng-template let-node="rowData" pTemplate="body">
-      <input type="text" [(ngModel)]="node.data.name" style="width:100%;border-width:0px 0px 1px 0px">
+      <input type="text" [(ngModel)]="node.data.name"  [ngClass]="node.styleClass"  style="width:100%;border-width:0px 0px 1px 0px">
     </ng-template>
   </p-column>
-  <p-column field="size" header="Size">
+<!--   <p-column field="size" header="Size" >
     <ng-template let-node="rowData" pTemplate="body">
-      <input type="text" [(ngModel)]="node.data.size" style="width:100%;border-width:0px 0px 1px 0px">
+      <input type="text" [(ngModel)]="node.data.size"  [ngClass]="node.styleClass"  style="width:100%;border-width:0px 0px 1px 0px">
     </ng-template>
-  </p-column>
+  </p-column> -->
 </p-treeTable>

@@ -1,0 +1,16 @@
+<p-dialog header="Nouveau Site ..." [(visible)]="display" modal="modal" width="300" [responsive]="true">
+  <input type="text" value="" pInputText [(ngModel)]="name">
+  <p-dropdown [options]="labels" [(ngModel)]="selectedLabel" [style]="{'width':'150px'}" filter="filter" #lname>
+    <ng-template let-label pTemplate="item">
+      <div class="ui-helper-clearfix">
+        {{label.label}}
+      </div>
+    </ng-template>
+  </p-dropdown>
+  <p-footer>
+    <button type="button" pButton icon="fa-check" (click)="okClick()" label="Yes"></button>
+    <button type="button" pButton icon="fa-close" (click)="cancelCreate()" label="No"></button>
+  </p-footer>
+</p-dialog>
+
+<button type="button" (click)="showDialog()" pButton icon="fa-plus-square-o" ></button>

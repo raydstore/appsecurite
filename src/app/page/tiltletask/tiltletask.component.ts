@@ -40,14 +40,14 @@ export class TiltletaskComponent implements OnInit {
               data: titletask,
               children: childs,
               expanded: true,
-              styleClass: 'stparent'
+              styleClass: 'clbranch'
             };
           } else {
             value = {
               name: titletask.name,
               type: 'sheet',
               data: titletask,
-              styleClass: 'stchild'
+              styleClass: 'clstatment'
             };
           }
           result.push(value);
@@ -70,15 +70,15 @@ export class TiltletaskComponent implements OnInit {
              type: 'branch',
              data: titletask,
              children: childs,
-             expanded: true,
-             styleClass: 'stparent'
+             expanded: false,
+             styleClass: 'clworksheet'
            };
          } else {
            value = {
              name: titletask.name,
-             type: 'sheet',
+             type: 'branch',
              data: titletask,
-             styleClass: 'stchild'
+             styleClass: 'clworksheet'
            };
     };
     this.data.push(value);

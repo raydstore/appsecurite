@@ -1,9 +1,9 @@
+import { InfoSite } from './../dialog-modal/dialog-modal.component';
 import { NotFoundError } from './../../common/not-found-error';
 import { Label } from './../../table/label';
 import { LabelService } from './../../services/label.service';
 import { AppError } from './../../common/app-error';
 import { BadInput } from './../../common/bad-input';
-import { InfoSite } from './../../table/infoSite';
 import { Site } from './../../table/site';
 import { SiteService } from './../../services/site.service';
 import { TreeNode } from 'primeng/primeng';
@@ -13,6 +13,7 @@ import { Component, OnInit, ViewEncapsulation, Attribute } from '@angular/core';
 import { DataGridModule } from 'primeng/primeng';
 import { DropdownModule } from 'primeng/primeng';
 import { DialogModule } from 'primeng/primeng';
+import { DialogModalComponent } from '../dialog-modal/dialog-modal.component';
 
 @Component({
   selector: 'app-site',
@@ -26,10 +27,11 @@ export class SitesComponent implements OnInit {
   ltLabels: Label[] = [];
   labels: any[] = [{ label: 'Select Label', value: null }];
   selectedLabel: Label;
-  display: boolean = false;
+  display = false;
+  nodec: TreeNode;
 
   
-  constructor(private service: SiteService, private luService: LabelService) {
+  constructor(private service: SiteService, private lbService: LabelService) {
   }
 
   ngOnInit() {
@@ -38,7 +40,7 @@ export class SitesComponent implements OnInit {
          this.sites = sites;
          this.buildSites();
       });
-    this.luService.getAll().
+    this.lbService.getAll().
       subscribe(ltLabels => {
         this.ltLabels = ltLabels;
         this.bulidLabels();
@@ -104,36 +106,45 @@ export class SitesComponent implements OnInit {
      };
      this.data.push(value);
   }
-
-  newSite(node: TreeNode, input: HTMLInputElement) {
+// node: TreeNode, infoLabel: InfoLabel
+  newSite(infoSite: InfoSite) {
+    console.log(JSON.stringify(infoSite.node));
     let siteChild = {
       id: 0,
-      name: input.value,
-      idlabel: this.selectedLabel,
-      idparent: node.data,
+      name: infoSite.name,
+      idlabel: infoSite.label,
+      /* idlabel: this.selectedLabel, */
+      idparent: infoSite.node.data,
       datecreate: new Date(),
       dateupdate: new Date(),
       owner: 'ali',
       lastuhser: 'ali',
     };
+    console.log('2');
     let nd: TreeNode = {
-      label: input.value,
+      label: infoSite.name,
       type: 'sheet',
       data: siteChild,
       styleClass: 'stchild'
     };
-    if (!('children' in node)) {
-      node.children = [];
-      node.type = 'branch';
-      node.styleClass = 'stparent';
+    console.log('3');
+    if (!('children' in infoSite.node)) {
+      infoSite.node.children = [];
+      infoSite.node.type = 'branch';
+      infoSite.node.styleClass = 'stparent';
     }
-    node.children.splice(0, 0, nd);
+    console.log('4');
+    infoSite.node.children.splice(0, 0, nd);
+    console.log('node = ' + JSON.stringify(infoSite.node));
     this.service.create(siteChild)
         .subscribe(nd => {
-          input.value = '';
+         // input.value = '';
+        //  this.selectedLabel = { name: 'Select Label' };
+        //  this.display = false;
+          console.log('nd = ' + JSON.stringify(nd));
         // this.label['id'] = newlabel.id;
       }, (error: AppError) => {
-        node.children.splice(0, 1);
+        infoSite.node.children.splice(0, 1);
 
         if (error instanceof BadInput) {
           // this.form.setErrors(originalError);
@@ -169,8 +180,10 @@ export class SitesComponent implements OnInit {
     this.display = true;
   }
 
-  cancelCreate(input: HTMLInputElement) {
+  cancelCreate(input: HTMLInputElement, inputSelect: HTMLSelectElement) {
     input.value = '';
+    inputSelect.selectedIndex = 0;
+    this.selectedLabel = { name: 'Select Label'};
     this.display = false;
   }
 

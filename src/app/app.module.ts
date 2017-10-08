@@ -29,7 +29,6 @@ import { TiltletaskComponent } from './page/tiltletask/tiltletask.component';
 import { InplaceModule } from 'primeng/primeng';
 import {DialogModule} from 'primeng/primeng';
 import { MarkComponent } from './page/mark/mark.component';
-import { Type } from './page/type.object/type.object.component';
 import { TypeObjectComponent } from './page/type-object/type-object.component';
 import { TypeOperationComponent } from './page/type-operation/type-operation.component';
 import { OperationComponent } from './page/operation/operation.component';
@@ -41,6 +40,10 @@ import { JobpostingComponent } from './page/jobposting/jobposting.component';
 import { TypeFormationComponent } from './page/type-formation/type-formation.component';
 import { FormationComponent } from './page/formation/formation.component';
 import { AlertComponent } from './page/alert/alert.component';
+import { Input } from '@angular/core';
+
+import { DialogModalComponent } from './page/dialog-modal/dialog-modal.component';
+import { DataTableModule, SharedModule } from 'primeng/primeng';
 
 @NgModule({
   declarations: [
@@ -53,7 +56,6 @@ import { AlertComponent } from './page/alert/alert.component';
     NotFoundComponent,
     TiltletaskComponent,
     MarkComponent,
-    Type.ObjectComponent,
     TypeObjectComponent,
     TypeOperationComponent,
     OperationComponent,
@@ -64,7 +66,8 @@ import { AlertComponent } from './page/alert/alert.component';
     JobpostingComponent,
     TypeFormationComponent,
     FormationComponent,
-    AlertComponent
+    AlertComponent,
+    DialogModalComponent
   ],
   imports: [
     BrowserModule,
@@ -84,12 +87,22 @@ import { AlertComponent } from './page/alert/alert.component';
     InplaceModule,
     DropdownModule,
     DialogModule,
+    DataTableModule, 
+    SharedModule,
     CodeHighlighterModule,
     RouterModule.forRoot([
       { path: '', component: NavComponent},
+      { path: 'activity', component: ActivityComponent },
       { path: 'label', component: LabelsComponent },
+      { path: 'mark', component: MarkComponent },
+      { path: 'typeobject', component: TypeObjectComponent },
+      { path: 'typeooperation', component: TypeOperationComponent },
+      { path: 'unitmeasure', component: UnitmeasureComponent },
       { path: 'site', component: SitesComponent },
+      { path: 'object', component: ObjectComponent },
+      { path: 'operation', component: OperationComponent },
       { path: 'titletask', component: TiltletaskComponent },
+      { path: 'instance', component: InstanceComponent },
       { path: '**', component: NotFoundComponent }
     ])
   ],

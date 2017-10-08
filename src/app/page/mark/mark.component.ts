@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DataTableModule, SharedModule } from 'primeng/primeng';
 
 @Component({
   selector: 'app-mark',

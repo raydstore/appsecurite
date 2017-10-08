@@ -1,5 +1,3 @@
-import { InfoSite } from './infoSite';
-
 
 export class Site {
     id?: number;
@@ -11,10 +9,3 @@ export class Site {
     datecreate?: Date;
     dateupdate?: Date;
 }
- /*   id?: number;
-    idparent?: number;
-    idlabel?: number;
-    name?: string;
-    infoSite: InfoSite;
-    children: Site[];
-}*/
