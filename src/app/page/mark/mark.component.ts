@@ -11,7 +11,7 @@ import { Http, Response } from '@angular/http';
 
 @Component({
   selector: 'app-mark',
-  templateUrl: './mark.component.html',
+  templateUrl: 'mark.component.html',
   styleUrls: ['./mark.component.css']
 })
 export class MarkComponent implements OnInit {
@@ -98,6 +98,20 @@ export class MarkComponent implements OnInit {
         }
       }
       );
+  }
+
+  updateMark(_mark, input: HTMLInputElement) {
+    _mark.name = input.value;
+    this.service.update(_mark)
+      .subscribe(updatemark => {
+        console.log(updatemark);
+      });
+    console.log('name = ' + input.value);
+    console.log(_mark);
+  }
+
+  cancelUpdate(_mark) {
+    //
   }
 
   showNewDialoge() {

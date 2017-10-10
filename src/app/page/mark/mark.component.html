@@ -1,11 +1,14 @@
-<!-- <div class="card bg-light">
-  <div class="card-header">showNewDialoge
-    <h4>Liste des Marque</h4>
- --><button class="btn btn-success" (click)="showNewDialoge()"><i class="fa fa-plus"></i></button>
-<!-- </div> -->
+<div class="card bg-light">
+  <div class="card-header alCenter">
+    
+    <h4 id="idh4">Liste des Marque</h4>
 
-<!-- <div class="card-body"> (onRowSelect)="onRowSelect($event)"-->
-<p-dataTable [value]="marks" expandableRows="true" selectionMode="single" immuable="false" [(selection)]="selectedMark"  rowExpandMode="single" [responsive]="true">
+ <button class="btn btn-success" (click)="showNewDialoge()"><i class="fa fa-plus"></i></button>
+
+</div>
+
+<!-- <div class="card-body">immuable="flse"a (onRowSelect)="onRowSelect($event)"-->
+<p-dataTable [value]="marks" expandableRows="true" selectionMode="single" immuable="true" [(selection)]="selectedMark"  rowExpandMode="single" [responsive]="true">
   <p-column expander="true" styleClass="col-icon"></p-column>
   <p-column field="id" header="Id"></p-column>
   <p-column field="name" header="Name"></p-column>
@@ -45,16 +48,24 @@
           <div class="form-group row">
             <label for="chname" class="col-sm-2 col-form-label">name</label>
             <div class="col-sm-10">
-              <input type="text" class="form-control" id="chname" [value]="item.name" placeholder="le nom de la marque">
+              <input type="text" class="form-control" id="chname" [value]="item.name" placeholder="le nom de la marque" #name>
             </div>
+          </div>
+          <div class="clupdate">
+            <button class="btn btn-success" (click)="updateMark(item, name)">
+                    <i class="fa fa-check">Valider</i>
+                </button>
+            <button class="btn btn-warning" (click)="cancelUpdate(item)">
+                    <i class="fa fa-times">Annuler</i>
+                </button>
           </div>
         </div>
       <!-- </div> -->
     <!-- </div> -->
   </ng-template>
 </p-dataTable>
-<!--   </div>
-</div> -->
+  <!-- </div> -->
+</div>
 
 <p-dialog header="Marque Details" [(visible)]="dialogVisible" [responsive]="true" showEffect="fade" [modal]="true" width="250">
   <div class="ui-grid ui-grid-responsive ui-grid-pad" *ngIf="newMark">

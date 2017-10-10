@@ -102,7 +102,7 @@ import { DataTableModule, SharedModule } from 'primeng/primeng';
       { path: 'label', component: LabelsComponent },
       { path: 'mark', component: MarkComponent },
       { path: 'typeobject', component: TypeObjectComponent },
-      { path: 'typeooperation', component: TypeOperationComponent },
+      { path: 'typeoperation', component: TypeOperationComponent },
       { path: 'unitmeasure', component: UnitmeasureComponent },
       { path: 'site', component: SitesComponent },
       { path: 'object', component: ObjectComponent },
