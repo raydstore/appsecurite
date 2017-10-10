@@ -1,5 +1,5 @@
 
-export class Site {
+ class Site {
     id?: number;
     name?: string;
     idlabel?: any;

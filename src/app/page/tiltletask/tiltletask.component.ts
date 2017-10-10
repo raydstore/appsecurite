@@ -1,7 +1,7 @@
-import { Titletask } from './../../table/titletask';
 import { TitletaskService } from './../../services/titletask.service';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { TreeTableModule, TreeNode, SharedModule } from 'primeng/primeng';
+import { Titletask } from './../../table/table';
 
 @Component({
   selector: 'app-tiltletask',
@@ -70,7 +70,7 @@ export class TiltletaskComponent implements OnInit {
              type: 'branch',
              data: titletask,
              children: childs,
-             expanded: false,
+             expanded: true,
              styleClass: 'clworksheet'
            };
          } else {

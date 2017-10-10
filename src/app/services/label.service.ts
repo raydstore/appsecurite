@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class LabelService extends DataService {
     constructor(http: Http) {
-        super('http://10.1.0.150:8080/HseWebService/wsrv/label', http);
+        super('http://localhost:8080/HseWebService/wsrv/label', http);
     }
 
 }

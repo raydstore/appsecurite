@@ -3,11 +3,11 @@
 } 
 
 .climgheader {
-    background-color: lightgray!important;
+    /* background-color: #2C2222!important; */
 } 
 
 .climgheader img{
-    margin-left: 50px!important;
+    margin-left: 250px!important;
 } 
 
 .clplcenter {

@@ -1,10 +1,10 @@
 import { InfoSite } from './../dialog-modal/dialog-modal.component';
 import { NotFoundError } from './../../common/not-found-error';
-import { Label } from './../../table/label';
+/* import { Label } from './../../table/label'; */
 import { LabelService } from './../../services/label.service';
 import { AppError } from './../../common/app-error';
 import { BadInput } from './../../common/bad-input';
-import { Site } from './../../table/site';
+/* import { Site } from './../../table/site'; */
 import { SiteService } from './../../services/site.service';
 import { TreeNode } from 'primeng/primeng';
 import { PanelModule } from 'primeng/primeng';
@@ -14,6 +14,7 @@ import { DataGridModule } from 'primeng/primeng';
 import { DropdownModule } from 'primeng/primeng';
 import { DialogModule } from 'primeng/primeng';
 import { DialogModalComponent } from '../dialog-modal/dialog-modal.component';
+import {Site} from '../../table/table';
 
 @Component({
   selector: 'app-site',
@@ -24,11 +25,11 @@ import { DialogModalComponent } from '../dialog-modal/dialog-modal.component';
 export class SitesComponent implements OnInit {
   sites: Site[] = [];
   data: TreeNode[] = [];
-  ltLabels: Label[] = [];
+ /*  ltLabels: Label[] = [];
   labels: any[] = [{ label: 'Select Label', value: null }];
   selectedLabel: Label;
   display = false;
-  nodec: TreeNode;
+  nodec: TreeNode; */
 
   
   constructor(private service: SiteService, private lbService: LabelService) {
@@ -40,19 +41,19 @@ export class SitesComponent implements OnInit {
          this.sites = sites;
          this.buildSites();
       });
-    this.lbService.getAll().
+    /* this.lbService.getAll().
       subscribe(ltLabels => {
         this.ltLabels = ltLabels;
-        this.bulidLabels();
+        this.bulidLabels(); 
     }
-    );
+    ); */
   }
 
-  bulidLabels() {
+  /* bulidLabels() {
     for (let label of this.ltLabels) {
       this.labels.push({label: label.name, value: label});
     }
-  }
+  } */
 
   getSiteRoot(): Site {
      for (let site of this.sites) {
@@ -118,7 +119,7 @@ export class SitesComponent implements OnInit {
       datecreate: new Date(),
       dateupdate: new Date(),
       owner: 'ali',
-      lastuhser: 'ali',
+      lastuser: 'ali'
     };
     console.log('2');
     let nd: TreeNode = {
@@ -176,7 +177,7 @@ export class SitesComponent implements OnInit {
       );
   }
 
-  showDialog() {
+/*   showDialog() {
     this.display = true;
   }
 
@@ -185,6 +186,6 @@ export class SitesComponent implements OnInit {
     inputSelect.selectedIndex = 0;
     this.selectedLabel = { name: 'Select Label'};
     this.display = false;
-  }
+  } */
 
 }

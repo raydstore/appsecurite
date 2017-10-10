@@ -13,10 +13,11 @@ export class DataService {
     headers = new Headers();
 
     constructor(private url, private http: Http) {
+        this.headers.append('Access-Control-Allow-Origin', '*');
+        this.headers.append('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+        this.headers.append('Access-Control-Allow-Credentials', 'true');
+        this.headers.append('Access-Control-Allow-Headers', 'Content-Type, Accept');
         this.headers.append('Content-Type', 'application/json');
-       /*  this.headers.append('Access-Control-Allow-Origin', '*');
-        this.headers.append('Access-Control-Allow-Methods', 'OPTIONS, GET, POST, PUT, DELETE');
-        this.headers.append('Access-Control-Allow-Headers', 'Content-Type'); */
      }
 
     getAll() {
@@ -25,15 +26,24 @@ export class DataService {
             .catch(this.handleError);
     }
 
+    getItem(id) {
+        return this.http.get(this.url + '/' + id, { headers: this.headers })
+            .map(response => response.json())
+            .catch(this.handleError);
+    }
+
     create(resource) {
         // for testing optimistic implementation
         // return Observable.throw(new AppError());
+      //  this.headers.set('Content-Type', 'application/json');
+    //   , { headers: this.headers }
         return this.http.post(this.url, JSON.stringify(resource), { headers: this.headers })
         .map(response => response.json())
           //  .catch(this.handleError);
     }
 
     update(resource) {
+        // , { headers: this.headers }
         return this.http.put(this.url + '/' + resource.id, JSON.stringify(resource), { headers: this.headers })
             .map(response => response.json())
             .catch(this.handleError);
@@ -42,6 +52,8 @@ export class DataService {
     delete(id) {
         // for testing optimistic implementation
         // return Observable.throw(new AppError());
+        /* this.headers.set('Content-Type', 'text/plain'); */
+        // , { headers: this.headers }
         return this.http.delete(this.url + '/' + id, { headers: this.headers })
             .map(response => response.json())
             .catch(this.handleError);

@@ -1,0 +1,16 @@
+#chid {
+    width: 100px;
+}
+
+#chname {
+    width: 300px;
+}
+
+.ui-grid {
+    background-color: lightgray;
+    /* padding-top: 20p */
+}
+
+.ui-grid-row {
+    margin-left: 100px;
+}

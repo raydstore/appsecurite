@@ -1,7 +1,7 @@
 import { LabelService } from './../../services/label.service';
-import { Label } from './../../table/label';
 import { TreeNode } from 'primeng/primeng';
 import { Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
+import { Label } from '../../table/table';
 
 @Component({
   selector: 'app-dialog-modal',

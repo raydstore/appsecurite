@@ -1,5 +1,5 @@
 <p-organizationChart [value]="data" styleClass="company">
-  <ng-template let-node pTemplate="leaf">
+  <ng-template let-node pTemplate="leaf"  class="nl">
     <div class="card">
       <h4 class="card-header">{{node.label}}</h4>
       <div class="card-body">
@@ -9,7 +9,7 @@
       </div>
     </div>
   </ng-template>
-  <ng-template let-node pTemplate="default">
+  <ng-template let-node pTemplate="default" class="nd">
     <div class="card">
       <h4 class="card-header">{{node.label}}</h4>
       <div class="card-body">

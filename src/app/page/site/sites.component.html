@@ -1,90 +1,14 @@
 <div class="panel-scroll">
-<p-organizationChart [value]="data" expanded="true" styleClass="company" class="a">
-  <ng-template let-node pTemplate="sheet" styleClass="stchild">
-    {{node.label}}  
-  <app-dialog-modal [inode] = "node" (okClicked)="newSite($event)"></app-dialog-modal>
-<!--   <p-dialog header="Nouveau Site ..." [(visible)]="display" modal="modal" width="300" [responsive]="true">
-      <input type="text" value="" pInputText #name>
-      <p-dropdown [options]="labels" [(ngModel)]="selectedLabel" [style]="{'width':'150px'}" filter="filter" #lname>
-        <ng-template let-label pTemplate="item">
-          <div class="ui-helper-clearfix">
-            {{label.label}}
-          </div>
-        </ng-template>
-      </p-dropdown>
-      <p-footer>
-        <button type="button" pButton icon="fa-check" (click)="newSite(node, name)" label="Yes"></button>
-        <button type="button" pButton icon="fa-close" (click)="cancelCreate(name, lname)" label="No"></button>
-      </p-footer>
-    </p-dialog>
-
-    <button type="button" (click)="showDialog()" pButton icon="fa-external-link-square" label="Show"></button> -->
-    <!-- <p-inplace closable="closable" editor="true">
-      <span pInplaceDisplay>
-        Click to Edit
-    </span>
-      <span pInplaceContent>
-        <input type="text" value="" pInputText #name>
-        <p-dropdown [options]="labels" [(ngModel)]="selectedLabel" [style]="{'width':'150px'}" filter="filter">
-          <ng-template let-label pTemplate="item">
-            <div class="ui-helper-clearfix" >
-               {{label.label}}
-            </div>
-          </ng-template>
-        </p-dropdown>
-         <button class="btn btn-success btn-xs" (click) = "newSite(node, name)" type="submit"><i class="fa fa-plus"></i></button>
-    </span>
-    </p-inplace> -->
-    <button type="button" icon="fa-minus-square" pButton (click)="deleteSite(node)"></button>
-    <!-- <button type="button" (click)="showDialog()" pButton icon="fa-plus-square"></button> -->
-    <!-- <button class="btn btn-success btn-xs" ><i class="fa fa-plus"></i></button>
-        <button class="btn btn-danger btn-xs" >
-                    <i class="fa fa-minus"></i>
-                </button> -->
-
-  </ng-template>
-  <ng-template let-node pTemplate="branch" styleClass="stparent">
-    <div class="node-header ui-corner-top">{{node.label}}</div>
-    <app-dialog-modal [inode]="node" (okClicked)="newSite($event)"></app-dialog-modal>
-    <button type="button" icon="fa-minus-square" pButton (click)="deleteSite(node)"></button>
-    <!-- <p-dialog header="Nouveau Site ..." [(visible)]="display" modal="modal" width="300" [responsive]="true">
-      <input type="text" value="" pInputText #name>
-      <p-dropdown [options]="labels" [(ngModel)]="selectedLabel" [style]="{'width':'150px'}" filter="filter" #lname>
-        <ng-template let-label pTemplate="item">
-          <div class="ui-helper-clearfix">
-            {{label.label}}
-          </div>
-        </ng-template>
-      </p-dropdown>
-      <p-footer>
-        <button type="button" pButton icon="fa-check" (click)="newSite(node, name)" label="Yes"></button>
-        <button type="button" pButton icon="fa-close" (click)="cancelCreate(name, lname)" label="No"></button>
-      </p-footer>
-    </p-dialog>
-
-    <button type="button" (click)="showDialog()" pButton icon="fa-external-link-square" label="Show"></button> -->
-    <!-- <div class="node-content">
-      <p-inplace closable="closable" editor="true">
-        <span pInplaceDisplay>
-        Click to Edit
-    </span>
-        <span pInplaceContent>
-        <input type="text" value="" pInputText #name>
-        <p-dropdown [options]="labels" [(ngModel)]="selectedLabel" [style]="{'width':'150px'}" filter="filter">
-          <ng-template let-label pTemplate="item">
-            <div class="ui-helper-clearfix" >
-               {{label.label}}
-            </div>
-          </ng-template>
-        </p-dropdown>
-         <button class="btn btn-success btn-xs" (click) = "newSite(node, name)" type="submit"><i class="fa fa-plus"></i></button>
-    </span>
-      </p-inplace>
-      <!--   <button class="btn btn-success btn-xs"><i class="fa fa-plus"></i></button>
-        <button class="btn btn-danger btn-xs" (click)="deleteSite(node)">
-                    <i class="fa fa-minus"></i>
-                </button> 
-    </div> -->
-  </ng-template>
-</p-organizationChart>
+  <p-organizationChart [value]="data" expanded="true" styleClass="company" class="a">
+    <ng-template let-node pTemplate="sheet" styleClass="stchild">
+      {{node.label}}
+      <app-dialog-modal [inode]="node" (okClicked)="newSite($event)"></app-dialog-modal>
+      <button type="button" icon="fa-minus-square" pButton (click)="deleteSite(node)"></button>
+    </ng-template>
+    <ng-template let-node pTemplate="branch" styleClass="stparent">
+      <div class="node-header ui-corner-top">{{node.label}}</div>
+      <app-dialog-modal [inode]="node" (okClicked)="newSite($event)"></app-dialog-modal>
+      <button type="button" icon="fa-minus-square" pButton (click)="deleteSite(node)"></button>
+    </ng-template>
+  </p-organizationChart>
 </div>

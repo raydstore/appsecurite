@@ -1,11 +1,11 @@
-import { Label } from '../../table/label';
+
 import { AppError } from '../../common/app-error';
 import { BadInput } from './../../common/bad-input';
 import { NotFoundError } from '../../common/not-found-error';
-// import { error } from 'util';
 import { LabelService } from '../../services/label.service';
 import { OnInit, Component } from '@angular/core';
 import { Http, Response } from '@angular/http';
+import { Label } from '../../table/table';
 
 @Component({
     selector: 'app-labels',
@@ -55,20 +55,17 @@ export class LabelsComponent implements OnInit {
     deleteLabel(label) {
         let index = this.labels.indexOf(label);
         this.labels.splice(index, 1);
-
         this.service.delete(label.id)
             .subscribe(
             null,
             (error: Response) => {
                 this.labels.splice(index, 0, label);
-
                 if (error instanceof NotFoundError) {
-                    alert('this label has already been deleted');
+                  alert('this label has already been deleted');
                 } else {
                     throw error;
                 }
-            }
-            );
+            })
     }
 
     showEditLabelForm(label: Label){

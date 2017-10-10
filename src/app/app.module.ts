@@ -1,3 +1,9 @@
+import { LastidService } from './services/lastid.service';
+import { TypeOperationService } from './services/type-operation.service';
+import { TypeObjectService } from './services/type-object.service';
+import { UnitMeasureService } from './services/unit-measure.service';
+import { ActivityService } from './services/activity.service';
+import { MarkService } from './services/mark.service';
 import { TitletaskService } from './services/titletask.service';
 import { NotFoundComponent } from './page/notfound/notFound.component';
 import { SiteService } from './services/site.service';
@@ -87,7 +93,7 @@ import { DataTableModule, SharedModule } from 'primeng/primeng';
     InplaceModule,
     DropdownModule,
     DialogModule,
-    DataTableModule, 
+    DataTableModule,
     SharedModule,
     CodeHighlighterModule,
     RouterModule.forRoot([
@@ -111,6 +117,12 @@ import { DataTableModule, SharedModule } from 'primeng/primeng';
     LabelService,
     SiteService,
     TitletaskService,
+    MarkService,
+    ActivityService,
+    UnitMeasureService,
+    TypeObjectService,
+    TypeOperationService,
+    LastidService,
     {provide: ErrorHandler, useClass: AppErrorHandler}
   ],
   bootstrap: [AppComponent]

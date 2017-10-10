@@ -1,5 +1,5 @@
 
-export class Titletask {
+ class Titletask {
     id?: number;
     name?: string;
     kind?: string;
