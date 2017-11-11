@@ -16,7 +16,8 @@ export class DataService {
         this.headers.append('Access-Control-Allow-Origin', '*');
         this.headers.append('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
         this.headers.append('Access-Control-Allow-Credentials', 'true');
-        this.headers.append('Access-Control-Allow-Headers', 'Content-Type, Accept');
+        this.headers.append('Access-Control-Allow-Headers', 'Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With');
+// 'Content-Type, Accept');
         this.headers.append('Content-Type', 'application/json');
      }
 

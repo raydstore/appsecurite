@@ -103,6 +103,7 @@ export class SitesComponent implements OnInit {
        data: siteRoot,
        children: this.getChilds(siteRoot),
        expanded: true,
+       partialSelected: true,
        styleClass: 'stparent'
      };
      this.data.push(value);
