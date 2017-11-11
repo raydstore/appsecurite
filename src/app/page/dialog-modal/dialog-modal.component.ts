@@ -50,7 +50,7 @@ export class DialogModalComponent implements OnInit {
   // input: HTMLInputElement, inputSelect: HTMLSelectElement
 
   cancelCreate() {
-    this.name = 'test name';
+    this.name = '';
     // inputSelect.selectedIndex = 0;
     this.selectedLabel = { name: 'Select Label' };
     this.display = false;
