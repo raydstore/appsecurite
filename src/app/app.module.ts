@@ -1,3 +1,5 @@
+import { PropertyService } from './services/property.service';
+import { ObjectService } from './services/object.service';
 import { LastidService } from './services/lastid.service';
 import { TypeOperationService } from './services/type-operation.service';
 import { TypeObjectService } from './services/type-object.service';
@@ -123,6 +125,8 @@ import { DataTableModule, SharedModule } from 'primeng/primeng';
     TypeObjectService,
     TypeOperationService,
     LastidService,
+    ObjectService,
+    PropertyService,
     {provide: ErrorHandler, useClass: AppErrorHandler}
   ],
   bootstrap: [AppComponent]

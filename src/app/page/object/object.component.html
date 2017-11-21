@@ -1,3 +1,164 @@
-<p>
-  object works!
-</p>
+<div class="card bg-light">
+  <div class="card-header alCenter">
+
+    <h4 id="idh4">Liste des Marque</h4>
+
+    <button class="btn btn-success" (click)="showNewDialoge()">
+      <i class="fa fa-plus"></i>
+    </button>
+
+  </div>
+
+  <!-- <div class="card-body">immuable="flse"a (onRowSelect)="onRowSelect($event)"-->
+  <p-dataTable [value]="objects" expandableRows="true" selectionMode="single" immuable="true" [(selection)]="selectedObject"
+    rowExpandMode="single" [responsive]="true">
+    <p-column expander="true" styleClass="col-icon"></p-column>
+    <p-column field="id" header="Id"></p-column>
+    <p-column field="name" header="Name"></p-column>
+    <p-column field="datecreate" header="Crée le">
+      <ng-template let-col let-m="rowData" pTemplate="body">
+        <!-- <span [style.color]="car[col.field]"> -->
+        {{m[col.field] | date:'shortDate'}}
+        <!-- </span> -->
+      </ng-template>
+    </p-column>
+    <p-column field="owner" header="par"></p-column>
+    <p-column field="dateupdate" header="Modifier le">
+      <ng-template let-col let-m="rowData" pTemplate="body">
+        <!-- <span [style.color]="car[col.field]"> -->
+        {{m[col.field] | date:'shortDate'}}
+        <!-- </span> -->
+      </ng-template>
+    </p-column>
+    <p-column field="lastuser" header="par"></p-column>
+    <p-column styleClass="col-button">
+      <ng-template let-m="rowData" pTemplate="body">
+        <button class="btn btn-danger" (click)="deleteObject(m)">
+          <i class="fa fa-minus"></i>
+        </button>
+      </ng-template>
+    </p-column>
+    <ng-template let-item pTemplate="rowexpansion">
+      <!-- <div class="ui-grid ui-grid-responsive ui-fluid" style="font-size:16px;padding:20px"> -->
+      <!-- <div class="ui-grid-row"> -->
+      <div class="container">
+        <div class="form-group row">
+          <label for="chid" class="col-sm-2 col-form-label">id : </label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="chid" [value]="item.id" placeholder="Identificateur" readonly>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="chname" class="col-sm-2 col-form-label">name</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="chname" [value]="item.name" placeholder="le nom de la marque" #name>
+          </div>
+        </div>
+        <div class="clupdate">
+          <button class="btn btn-success" (click)="updateObject(item, name)">
+            <i class="fa fa-check">Valider</i>
+          </button>
+          <button class="btn btn-warning" (click)="cancelUpdate(item)">
+            <i class="fa fa-times">Annuler</i>
+          </button>
+        </div>
+        <div>
+          <p-dataTable [value]="propertys" expandableRows="true" selectionMode="single" immuable="true" [(selection)]="selectedProperty"
+            rowExpandMode="single" [responsive]="true">
+            <p-column expander="true" styleClass="col-icon"></p-column>
+            <p-column field="id" header="Id"></p-column>
+            <p-column field="name" header="Name"></p-column>
+            <p-column field="datecreate" header="Crée le">
+              <ng-template let-col let-p="rowData" pTemplate="body">
+                <!-- <span [style.color]="car[col.field]"> -->
+                {{p[col.field] | date:'shortDate'}}
+                <!-- </span> -->
+              </ng-template>
+            </p-column>
+            <p-column field="owner" header="par"></p-column>
+            <p-column field="dateupdate" header="Modifier le">
+              <ng-template let-col let-p="rowData" pTemplate="body">
+                <!-- <span [style.color]="car[col.field]"> -->
+                {{p[col.field] | date:'shortDate'}}
+                <!-- </span> -->
+              </ng-template>
+            </p-column>
+            <p-column field="lastuser" header="par"></p-column>
+            <p-column styleClass="col-button">
+              <ng-template let-p="rowData" pTemplate="body">
+                <button class="btn btn-danger" (click)="deleteProperty(p)">
+                  <i class="fa fa-minus"></i>
+                </button>
+              </ng-template>
+            </p-column>
+            <ng-template let-item pTemplate="rowexpansion">
+              <!-- <div class="ui-grid ui-grid-responsive ui-fluid" style="font-size:16px;padding:20px"> -->
+              <!-- <div class="ui-grid-row"> -->
+              <div class="container">
+                <div class="form-group row">
+                  <label for="pchid" class="col-sm-2 col-form-label">id : </label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" id="pchid" [value]="item.id" placeholder="Identificateur" readonly>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label for="pchname" class="col-sm-2 col-form-label">name</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" id="pchname" [value]="item.name" placeholder="le nom de la marque" #name>
+                  </div>
+                </div>
+                <div class="clupdate">
+                  <button class="btn btn-success" (click)="updateProperty(item, name)">
+                    <i class="fa fa-check">Valider</i>
+                  </button>
+                  <button class="btn btn-warning" (click)="cancelUpdateProperty(item)">
+                    <i class="fa fa-times">Annuler</i>
+                  </button>
+                </div>
+              </div>
+          
+            </ng-template>
+          </p-dataTable>
+          <!-- </div> -->
+          </div>
+          
+          <p-dialog header="Proprieté Détails" [(visible)]="dialogVisibleProperty" [responsive]="true" showEffect="fade" [modal]="true" width="250">
+            <div class="ui-grid ui-grid-responsive ui-grid-pad" *ngIf="newProperty">
+              <div>
+                <span>
+                  <label for="piid">id : </label>
+                  <input type="text" class="form-control" id="piid" [(ngModel)]="newProperty.id" placeholder="Identificateur" readonly>
+                </span>
+                <span>
+                  <label for="piname">name</label>
+                  <input type="text" id="piname" [(ngModel)]="newProperty.name" placeholder="le nom de la marque">
+                </span>
+                <button class="btn btn-primary" (click)="createProperty()">Submit</button>
+                <button class="btn btn-warning" (click)="hideNewDialogeProperty()">cancel</button>
+              </div>
+            </div>
+          </p-dialog>
+        </div>
+      <!-- </div> -->
+      <!-- </div> -->
+    </ng-template>
+  </p-dataTable>
+  <!-- </div> -->
+</div>
+
+<p-dialog header="Marque Details" [(visible)]="dialogVisible" [responsive]="true" showEffect="fade" [modal]="true" width="250">
+  <div class="ui-grid ui-grid-responsive ui-grid-pad" *ngIf="newObject">
+    <div>
+      <span>
+        <label for="iid">id : </label>
+        <input type="text" class="form-control" id="chid" [(ngModel)]="newObject.id" placeholder="Identificateur" readonly>
+      </span>
+      <span>
+        <label for="iname">name</label>
+        <input type="text" id="iname" [(ngModel)]="newObject.name" placeholder="le nom de la marque">
+      </span>
+      <button class="btn btn-primary" (click)="createObject()">Submit</button>
+      <button class="btn btn-warning" (click)="hideNewDialoge()">cancel</button>
+    </div>
+  </div>
+</p-dialog>

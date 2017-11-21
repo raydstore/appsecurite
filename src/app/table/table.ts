@@ -78,3 +78,20 @@ export interface Titletask {
     dateupdate?: Date;
 }
 
+export interface Object {
+    id?: number;
+    name?: string;
+    owner?: string;
+    lastuser?: string;
+    datecreate?: Date;
+    dateupdate?: Date;
+}
+
+export interface Property {
+    id?: number;
+    name?: string;
+    owner?: string;
+    lastuser?: string;
+    datecreate?: Date;
+    dateupdate?: Date;
+}
