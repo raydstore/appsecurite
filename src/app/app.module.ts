@@ -52,6 +52,7 @@ import { Input } from '@angular/core';
 
 import { DialogModalComponent } from './page/dialog-modal/dialog-modal.component';
 import { DataTableModule, SharedModule } from 'primeng/primeng';
+import { PropertyComponent } from './page/property/property.component';
 
 @NgModule({
   declarations: [
@@ -75,7 +76,8 @@ import { DataTableModule, SharedModule } from 'primeng/primeng';
     TypeFormationComponent,
     FormationComponent,
     AlertComponent,
-    DialogModalComponent
+    DialogModalComponent,
+    PropertyComponent
   ],
   imports: [
     BrowserModule,

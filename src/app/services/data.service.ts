@@ -33,6 +33,12 @@ export class DataService {
             .catch(this.handleError);
     }
 
+    getByQueryParam(paramName, paramValue) {
+        return this.http.get(this.url + '?' + paramName + '=' + paramValue)
+            .map(response => response.json())
+            .catch(this.handleError);
+    }
+
     create(resource) {
         // for testing optimistic implementation
         // return Observable.throw(new AppError());
