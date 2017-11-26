@@ -8,6 +8,7 @@ import { DataTableModule, SharedModule } from 'primeng/primeng';
 import { Property } from '../../table/table';
 import { PanelModule } from 'primeng/primeng';
 import { Http, Response } from '@angular/http';
+import { NgClass } from '@angular/common';
 
 @Component({
   selector: 'app-property',
@@ -82,13 +83,13 @@ export class PropertyComponent implements OnInit {
     // console.log('after propertys' + this.getLastid('property'));
   }
 
-  deleteProperty(_property: Property) {
+  deleteProperty(_property: any) {
     let index = this.propertys.indexOf(_property);
     this.propertys.splice(index, 1);
     this.propertys = [...this.propertys];
     // this.propertys.splice(index, 1);
-    console.log('_property' + _property.id + ', ' + JSON.stringify(_property));
-    this.service.delete(_property.id)
+    console.log('_property' + _property.propertyPK.id + ', ' + JSON.stringify(_property));
+    this.service.delete(_property.propertyPK.id)
       .subscribe(
       null,
       (error: Response) => {
@@ -176,6 +177,10 @@ export class PropertyComponent implements OnInit {
 
   findSelectedPropertyIndex(): number {
     return this.propertys.indexOf(this.selectedProperty);
+  }
+
+  isEqual(a, b) {
+    return a === b ? true : false;
   }
 }
 
