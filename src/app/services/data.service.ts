@@ -13,12 +13,15 @@ export class DataService {
     headers = new Headers();
 
     constructor(private url, private http: Http) {
-        this.headers.append('Access-Control-Allow-Origin', '*');
+    /*    this.headers.append('Access-Control-Allow-Origin', '*');
         this.headers.append('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
-        this.headers.append('Access-Control-Allow-Credentials', 'true');
-        this.headers.append('Access-Control-Allow-Headers', 'Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With');
-// 'Content-Type, Accept');
+        // this.headers.append('Access-Control-Allow-Credentials', 'true');
+        this.headers.append('Access-Control-Allow-Headers',
+        'Origin, X-Requested-With, Content-Type, Accept, X-Auth-Token, X-CSRF-TOKEN');
+        // Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With');
+// 'Content-Type, Accept');*/
         this.headers.append('Content-Type', 'application/json');
+        // application/x-www-form-urlencoded'); // '
      }
 
     getAll() {

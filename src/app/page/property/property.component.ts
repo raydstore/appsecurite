@@ -1,3 +1,4 @@
+import { UnitMeasureService } from './../../services/unit-measure.service';
 import { LastidService } from './../../services/lastid.service';
 import { NotFoundError } from './../../common/not-found-error';
 import { AppError } from './../../common/app-error';
@@ -16,34 +17,50 @@ import { NgClass } from '@angular/common';
   styleUrls: ['./property.component.css']
 })
 export class PropertyComponent implements OnInit {
-  @Input() idObject: number;
+  @Input() idObject: any;
   propertys: any[];
+  unitMeasures: any[];
   selectedProperty: Property;
   // property: any;
   newProperty: any = {
     datecreate: new Date(),
     dateupdate: new Date(),
-    id: 0,
+    idunitmeasure: '',
     lastuser: 'ali',
     name: '',
-    owner: 'ali'
+    object1: '',
+    owner: 'ali',
+    propertyPK: '',
+    type: ''
   };
+  typeObjects = [
+    { id: 'I', name: 'Entier' },
+    { id: 'N', name: 'Numeric' },
+    { id: 'V', name: 'Charactère' },
+    { id: 'I', name: 'Date' }
+  ];
   dialogVisible = false;
   newMode = false;
 
   lastids: any[];
   lastid: any;
 
-  constructor(private service: PropertyService, private lastidService: LastidService) {
+  constructor(private service: PropertyService, private unitMeasureService: UnitMeasureService, private lastidService: LastidService) {
   }
 
   ngOnInit() {
   //  this.service.getAll()
     console.log('idobject = ' + this.idObject);
-    this.service.getByQueryParam('idobject', this.idObject)
+    this.service.getByQueryParam('idobject', this.idObject.id)
       .subscribe(propertys => {
         this.propertys = propertys;
       });
+    /*  */
+    this.unitMeasureService.getAll()
+      .subscribe(unitMeasures => {
+        this.unitMeasures = unitMeasures;
+      });
+    /*  */
     /* this.lastidService.getAll()
       .subscribe(lastids => this.lastids = lastids); */
   }
@@ -63,8 +80,9 @@ export class PropertyComponent implements OnInit {
 
   createProperty() {
     this.dialogVisible = false;
-    //  console.log(JSON.stringify(this.newProperty));
+    console.log(JSON.stringify(this.newProperty));
     // this.propertys.splice(0, 0, this.newProperty);
+   // this.newProperty.
     this.propertys = [this.newProperty, ...this.propertys];
     // console.log('before propertys' + JSON.stringify(this.lastids));
 
@@ -121,14 +139,13 @@ export class PropertyComponent implements OnInit {
   showNewDialoge() {
     this.dialogVisible = true;
     this.newMode = true;
-    this.newProperty = {
+    /* this.newProperty = {
       datecreate: new Date(),
       dateupdate: new Date(),
-      id: 0,
       lastuser: 'ali',
       name: '',
       owner: 'ali'
-    };
+    }; */
   }
 
   hideNewDialoge() {

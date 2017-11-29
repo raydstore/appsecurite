@@ -88,10 +88,14 @@ export interface Object {
 }
 
 export interface Property {
-    id?: number;
+    propertyPK?: any;
+    type?: string;
     name?: string;
+    idunitmeasure?: any;
+    object1?: any;
     owner?: string;
     lastuser?: string;
     datecreate?: Date;
     dateupdate?: Date;
 }
+
