@@ -40,21 +40,24 @@ export class MarkComponent implements OnInit {
       .subscribe(marks => {
         this.marks = marks;
       });
-    /* this.lastidService.getAll()
-      .subscribe(lastids => this.lastids = lastids); */
+     this.lastidService.getAll()
+      .subscribe(lastids => this.lastids = lastids);
   }
 
   getLastid(name) {
-     let a = '';
-     this.lastidService.getAll()
-       .subscribe(lastids => {
-         for (let lid of lastids) {
-           if (lid.name === name) { a = lid.count; }
-         }
-       });
-       return a;
+    let lts: any[] ;
+    this.lastidService.getAll()
+      .subscribe(lastids => lts = lastids);
+    console.log('before lts' + JSON.stringify(lts));
+    for (let lid of lts)  {
+        if (lid.id === name) {
+           return lid['count'] ;
+        }
+    }
+    return 0;
+  //  console.log('before lid.count' + JSON.stringify(lid));
+     //  return lid.count;
   }
-  
 
 
   createMark() {
@@ -66,6 +69,13 @@ export class MarkComponent implements OnInit {
 
     this.service.create(this.newMark)
       .subscribe(newMark => {
+        console.log('newMark' + JSON.stringify(newMark));
+        console.log('first lastids' + JSON.stringify(this.lastids));
+        let lid = this.getLastid('mark');
+        console.log('last id mark = ' + lid);
+        console.log('last id mark = ' + JSON.stringify(lid));
+        this.marks[0].id = lid + 1 ;
+        console.log('fnito ');
         // this.label['id'] = newlabel.id;
       //  console.log('in side marks' + JSON.stringify(this.lastidService.getItem('mark')));
       }, (error: AppError) => {

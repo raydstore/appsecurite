@@ -31,8 +31,10 @@ export class DataService {
     }
 
     getItem(id) {
-        return this.http.get(this.url + '/' + id, { headers: this.headers })
-            .map(response => response.json())
+        return this.getAll()
+        .map(items => items.find(item => item.id === id))
+       /* return this.http.get(this.url + '/' + id)
+            .map(response => response.json()) */
             .catch(this.handleError);
     }
 

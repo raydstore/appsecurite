@@ -7,7 +7,7 @@ import { Injectable } from '@angular/core';
 export class LastidService extends DataService {
 
     constructor(http: Http) {
-        super('http://localhost:8080/HseWebService/wsrv/lastid', http);
+        super('http://10.1.0.150:8080/HseWebService/wsrv/lastid', http);
     }
 
 }
