@@ -1,3 +1,4 @@
+import { VwpropertyService } from './services/vwproperty.service';
 import { PropertyService } from './services/property.service';
 import { ObjectService } from './services/object.service';
 import { LastidService } from './services/lastid.service';
@@ -53,6 +54,9 @@ import { Input } from '@angular/core';
 import { DialogModalComponent } from './page/dialog-modal/dialog-modal.component';
 import { DataTableModule, SharedModule } from 'primeng/primeng';
 import { PropertyComponent } from './page/property/property.component';
+import { VwpropertyComponent } from './page/vwproperty/vwproperty.component';
+import { InstanceObjectComponent } from './page/instance-object/instance-object.component';
+import { InstanceService } from './services/instance.service';
 
 @NgModule({
   declarations: [
@@ -77,7 +81,9 @@ import { PropertyComponent } from './page/property/property.component';
     FormationComponent,
     AlertComponent,
     DialogModalComponent,
-    PropertyComponent
+    PropertyComponent,
+    VwpropertyComponent,
+    InstanceObjectComponent
   ],
   imports: [
     BrowserModule,
@@ -129,6 +135,8 @@ import { PropertyComponent } from './page/property/property.component';
     LastidService,
     ObjectService,
     PropertyService,
+    InstanceService,
+    VwpropertyService,
     {provide: ErrorHandler, useClass: AppErrorHandler}
   ],
   bootstrap: [AppComponent]

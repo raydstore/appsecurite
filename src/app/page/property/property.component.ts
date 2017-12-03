@@ -50,8 +50,8 @@ export class PropertyComponent implements OnInit {
 
   ngOnInit() {
   //  this.service.getAll()
-    console.log('idobject = ' + this.idObject);
-    this.service.getByQueryParam('idobject', this.idObject.id)
+    console.log('idobject = ' + JSON.stringify(this.idObject));
+    this.service.getByQueryParam({'idobject': this.idObject.id})
       .subscribe(propertys => {
         this.propertys = propertys;
       });

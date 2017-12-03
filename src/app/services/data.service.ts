@@ -37,9 +37,16 @@ export class DataService {
             .map(response => response.json()) */
             .catch(this.handleError);
     }
-
-    getByQueryParam(paramName, paramValue) {
-        return this.http.get(this.url + '?' + paramName + '=' + paramValue)
+// paramName, paramValue
+    getByQueryParam(listParam) {
+        let query: String = '';
+        let op: String = '?';
+        for (let param in listParam) {
+           query += op + param + '=' + listParam[param];
+            op = op === '?' ? '&' : '?';
+        }
+        console.log('listParam = ' + query);
+        return this.http.get(this.url + query)
             .map(response => response.json())
             .catch(this.handleError);
     }

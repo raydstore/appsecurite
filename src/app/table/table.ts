@@ -99,3 +99,13 @@ export interface Property {
     dateupdate?: Date;
 }
 
+export interface Instance {
+    id?: number;
+    idobject?: any;
+    idsite?: any;
+    idmark?: any;
+    owner?: string;
+    lastuser?: string;
+    datecreate?: Date;
+    dateupdate?: Date;
+}
