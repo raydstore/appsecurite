@@ -1,3 +1,5 @@
+import { VPropertyService } from './services/vproperty.service';
+import { IPropertyService } from './services/iproperty.service';
 import { VwpropertyService } from './services/vwproperty.service';
 import { PropertyService } from './services/property.service';
 import { ObjectService } from './services/object.service';
@@ -57,6 +59,9 @@ import { PropertyComponent } from './page/property/property.component';
 import { VwpropertyComponent } from './page/vwproperty/vwproperty.component';
 import { InstanceObjectComponent } from './page/instance-object/instance-object.component';
 import { InstanceService } from './services/instance.service';
+import { DPropertyService } from './services/dproperty.service';
+import { NPropertyService } from './services/nproperty.service';
+import { SiteNameComponent } from './page/site-name/site-name.component';
 
 @NgModule({
   declarations: [
@@ -83,7 +88,8 @@ import { InstanceService } from './services/instance.service';
     DialogModalComponent,
     PropertyComponent,
     VwpropertyComponent,
-    InstanceObjectComponent
+    InstanceObjectComponent,
+    SiteNameComponent
   ],
   imports: [
     BrowserModule,
@@ -137,6 +143,10 @@ import { InstanceService } from './services/instance.service';
     PropertyService,
     InstanceService,
     VwpropertyService,
+    DPropertyService,
+    IPropertyService,
+    NPropertyService,
+    VPropertyService,
     {provide: ErrorHandler, useClass: AppErrorHandler}
   ],
   bootstrap: [AppComponent]

@@ -36,12 +36,16 @@ export class UnitmeasureComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.loadData();
+    /* this.lastidService.getAll()
+      .subscribe(lastids => this.lastids = lastids); */
+  }
+
+  loadData() {
     this.service.getAll()
       .subscribe(unitmeasures => {
         this.unitMeasures = unitmeasures;
       });
-    /* this.lastidService.getAll()
-      .subscribe(lastids => this.lastids = lastids); */
   }
 
   getLastid(name) {
@@ -66,6 +70,7 @@ export class UnitmeasureComponent implements OnInit {
 
     this.service.create(this.newUnitMeasure)
       .subscribe(newUnitmeasure => {
+        this.loadData();
         // this.label['id'] = newlabel.id;
         //  console.log('in side unitmeasures' + JSON.stringify(this.lastidService.getItem('unitmeasure')));
       }, (error: AppError) => {
@@ -87,7 +92,9 @@ export class UnitmeasureComponent implements OnInit {
     console.log('_unitmeasure' + _unitmeasure.id + ', ' + JSON.stringify(_unitmeasure));
     this.service.delete(_unitmeasure.id)
       .subscribe(
-      null,
+      () => {
+        this.loadData();
+      },
       (error: Response) => {
         this.unitMeasures.splice(index, 0, _unitmeasure);
 
@@ -104,7 +111,8 @@ export class UnitmeasureComponent implements OnInit {
     _unitmeasure.name = input.value;
     this.service.update(_unitmeasure)
       .subscribe(updateunitmeasure => {
-        console.log(updateunitmeasure);
+        // console.log(updateunitmeasure);
+        this.loadData();
       });
     console.log('name = ' + input.value);
     console.log(_unitmeasure);

@@ -15,6 +15,7 @@ import { DropdownModule } from 'primeng/primeng';
 import { DialogModule } from 'primeng/primeng';
 import { DialogModalComponent } from '../dialog-modal/dialog-modal.component';
 import {Site} from '../../table/table';
+import { LastidService } from '../../services/lastid.service';
 
 @Component({
   selector: 'app-site',
@@ -25,6 +26,8 @@ import {Site} from '../../table/table';
 export class SitesComponent implements OnInit {
   sites: Site[] = [];
   data: TreeNode[] = [];
+  lastids: any[];
+  lastid: any;
  /*  ltLabels: Label[] = [];
   labels: any[] = [{ label: 'Select Label', value: null }];
   selectedLabel: Label;
@@ -32,21 +35,38 @@ export class SitesComponent implements OnInit {
   nodec: TreeNode; */
 
   
-  constructor(private service: SiteService, private lbService: LabelService) {
+  constructor(private service: SiteService, private lbService: LabelService, private lastidService: LastidService) {
   }
 
   ngOnInit() {
+    this.loadData();
+  }
+
+  loadData() {
     this.service.getAll()
-     .subscribe(sites => {
-         this.sites = sites;
-         this.buildSites();
+      .subscribe(sites => {
+        this.sites = sites;
+        this.buildSites();
       });
-    /* this.lbService.getAll().
-      subscribe(ltLabels => {
-        this.ltLabels = ltLabels;
-        this.bulidLabels(); 
+  }
+
+  loadLastId() {
+    this.lastidService.getAll()
+      .subscribe(lastids => this.lastids = lastids);
+  }
+
+  getLastid(name) {
+    let lts: any[];
+    this.loadLastId();
+    console.log('before lts' + JSON.stringify(this.lastids));
+    for (let lid of this.lastids) {
+      if (lid.id === name) {
+        return lid['count'];
+      }
     }
-    ); */
+    return 0;
+    //  console.log('before lid.count' + JSON.stringify(lid));
+    //  return lid.count;
   }
 
   /* bulidLabels() {
@@ -110,12 +130,12 @@ export class SitesComponent implements OnInit {
   }
 // node: TreeNode, infoLabel: InfoLabel
   newSite(infoSite: InfoSite) {
-    console.log(JSON.stringify(infoSite.node));
+    console.log('infoSite = ' + JSON.stringify(infoSite));
     let siteChild = {
       id: 0,
       name: infoSite.name,
       idlabel: infoSite.label,
-      /* idlabel: this.selectedLabel, */
+     // idlabel: this.selectedLabel,
       idparent: infoSite.node.data,
       datecreate: new Date(),
       dateupdate: new Date(),
@@ -138,12 +158,16 @@ export class SitesComponent implements OnInit {
     console.log('4');
     infoSite.node.children.splice(0, 0, nd);
     console.log('node = ' + JSON.stringify(infoSite.node));
+    console.log('5');
+    console.log(JSON.stringify(siteChild));
     this.service.create(siteChild)
         .subscribe(nd => {
          // input.value = '';
         //  this.selectedLabel = { name: 'Select Label' };
         //  this.display = false;
-          console.log('nd = ' + JSON.stringify(nd));
+      //    console.log('nd = ' + JSON.stringify(nd));
+          // this.data = [];
+          this.loadData();
         // this.label['id'] = newlabel.id;
       }, (error: AppError) => {
         infoSite.node.children.splice(0, 1);
@@ -164,7 +188,7 @@ export class SitesComponent implements OnInit {
     console.log('node = ' + JSON.stringify(node));
     this.service.delete((<Site> node.data).id)
       .subscribe(
-      null,
+      () => { this.loadData(); },
       (error: Response) => {
         console.log('3');
         this.sites.splice(index, 0, node.data);

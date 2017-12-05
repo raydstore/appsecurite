@@ -13,7 +13,8 @@
       'list-group-item-warning':   isEqual(item.type, 'D')
     }" >
       <span class="badge badge-pill badge-info"> {{item.type}} </span> {{item.name}}
-      <button class="btn btn-danger btndel" (click)="updateProperty(item)">
+      <input type="text" id="ivalue" #value [value]="item.value" [attr.placeholder]="'valeur du ' + item.name">
+      <button class="btn btn-danger btndel" (click)="updateProperty(item, value)">
         <i class="fa fa-minus"></i>
       </button>
     </li>

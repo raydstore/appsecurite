@@ -1,3 +1,4 @@
+import { TreeNode } from 'primeng/components/common/api';
 import { LastidService } from './../../services/lastid.service';
 import { NotFoundError } from './../../common/not-found-error';
 import { AppError } from './../../common/app-error';
@@ -17,6 +18,7 @@ import { Http, Response } from '@angular/http';
 export class MarkComponent implements OnInit {
   marks: any[];
   selectedMark: Mark;
+  selectedNode: TreeNode;
   // mark: any;
   newMark: any = {
     datecreate: new Date(),
@@ -36,20 +38,27 @@ export class MarkComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.loadData();
+    // this.loadLastId(); 
+  }
+
+  loadData() {
     this.service.getAll()
       .subscribe(marks => {
         this.marks = marks;
       });
-     this.lastidService.getAll()
+  }
+
+  loadLastId() {
+    this.lastidService.getAll()
       .subscribe(lastids => this.lastids = lastids);
   }
 
   getLastid(name) {
     let lts: any[] ;
-    this.lastidService.getAll()
-      .subscribe(lastids => lts = lastids);
-    console.log('before lts' + JSON.stringify(lts));
-    for (let lid of lts)  {
+    this.loadLastId(); 
+    console.log('before lts' + JSON.stringify(this.lastids));
+    for (let lid of this.lastids)  {
         if (lid.id === name) {
            return lid['count'] ;
         }
@@ -57,6 +66,15 @@ export class MarkComponent implements OnInit {
     return 0;
   //  console.log('before lid.count' + JSON.stringify(lid));
      //  return lid.count;
+  }
+
+  nodeExpand(event) {
+    this.selectedNode = event.node;
+    console.log('selected node ' + JSON.stringify(this.selectedNode));
+  }
+
+  isSelected(event) {
+    return this.selectedNode === event.node ? true : false;
   }
 
 
@@ -69,15 +87,14 @@ export class MarkComponent implements OnInit {
 
     this.service.create(this.newMark)
       .subscribe(newMark => {
-        console.log('newMark' + JSON.stringify(newMark));
+        this.loadData();
+  /*       console.log('newMark' + JSON.stringify(newMark));
         console.log('first lastids' + JSON.stringify(this.lastids));
         let lid = this.getLastid('mark');
         console.log('last id mark = ' + lid);
         console.log('last id mark = ' + JSON.stringify(lid));
         this.marks[0].id = lid + 1 ;
-        console.log('fnito ');
-        // this.label['id'] = newlabel.id;
-      //  console.log('in side marks' + JSON.stringify(this.lastidService.getItem('mark')));
+        console.log('fnito '); */
       }, (error: AppError) => {
         this.marks.splice(0, 1);
         if (error instanceof BadInput) {
@@ -97,7 +114,7 @@ export class MarkComponent implements OnInit {
     console.log('_mark' + _mark.id + ', ' + JSON.stringify(_mark));
     this.service.delete(_mark.id)
       .subscribe(
-      null,
+      () => { this.loadData(); } ,
       (error: Response) => {
         this.marks.splice(index, 0, _mark);
 
@@ -114,6 +131,7 @@ export class MarkComponent implements OnInit {
     _mark.name = input.value;
     this.service.update(_mark)
       .subscribe(updatemark => {
+        this.loadData();
         console.log(updatemark);
       });
     console.log('name = ' + input.value);
