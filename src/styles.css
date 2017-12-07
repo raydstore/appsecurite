@@ -51,3 +51,11 @@ img {
     background-color: lightgray;
     border-radius: 10px;
 }
+
+.btnright {
+    float: right;
+}
+
+.alleft {
+    float: left;
+}

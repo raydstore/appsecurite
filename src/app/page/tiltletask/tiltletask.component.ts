@@ -1,7 +1,9 @@
+import { BadInput } from './../../common/bad-input';
 import { TitletaskService } from './../../services/titletask.service';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { TreeTableModule, TreeNode, SharedModule } from 'primeng/primeng';
 import { Titletask } from './../../table/table';
+import { AppError } from '../../common/app-error';
 
 @Component({
   selector: 'app-tiltletask',
@@ -12,16 +14,43 @@ import { Titletask } from './../../table/table';
 export class TiltletaskComponent implements OnInit {
   titletasks: Titletask[] = [];
   data: TreeNode[] = [];
+  templateNewTitleTask: any = {
+    datecreate: new Date(),
+    dateupdate: new Date(),
+    id: 0,
+    kind: 'W',
+    lastuser: 'ali',
+    name: '',
+    owner: 'ali'
+  };
+
+  kinds = [
+    { id: 'W', name: 'WorkSheet' },
+    { id: 'W', name: 'Branch' },
+    { id: 'W', name: 'Sheet' }
+  ];
+
+  newTitleTask: any = this.templateNewTitleTask;
+
+  dialogVisible = false;
+  newMode = false;
+  newWorkSheet = false;
+
   constructor(private service: TitletaskService) {
   }
 
   ngOnInit() {
+    this.loadData();
+  }
+
+  loadData() {
     this.service.getAll()
       .subscribe(titletasks => {
         this.titletasks = titletasks;
         this.buildTitletask();
       });
   }
+
 
   getChilds(titletaskParent: Titletask): TreeNode[] {
     let result: TreeNode[] = [];
@@ -85,6 +114,53 @@ export class TiltletaskComponent implements OnInit {
     }
     }
     console.log(JSON.stringify(this.data));
+  }
+
+  addTitleTask(node) {
+    this.newTitleTask = this.templateNewTitleTask;
+    this.newTitleTask.kindparent = node.data.kind;
+    this.newTitleTask.idparent   = node.data.id;
+    this.newWorkSheet = false;
+    this.showNewDialoge();
+  }
+
+  addWorkSheet() {
+    this.newTitleTask = this.templateNewTitleTask;
+    this.newWorkSheet = true;
+    this.showNewDialoge();
+  } 
+
+  createTitleTask() {
+    this.dialogVisible = false;
+    this.titletasks = [this.newTitleTask, ...this.titletasks];
+    this.service.create(this.newTitleTask)
+      .subscribe(newtt => {
+        this.loadData();
+      }, (error: AppError) => {
+        this.titletasks.splice(0, 1);
+        if (error instanceof BadInput) {
+        } else {
+          throw error;
+        }
+      });
+  }
+
+  deleteTitleTask(node) {
+
+  }
+
+  updateTitleTask(node) {
+
+  }
+
+  showNewDialoge() {
+    this.dialogVisible = true;
+    this.newMode = true;
+  }
+
+  hideNewDialoge() {
+    this.dialogVisible = false;
+    this.newMode = false;
   }
 
 }

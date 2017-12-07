@@ -1,37 +1,34 @@
 .clworksheet {
-    background-color: lightblue;
-    /* color: blueviolet; */
-    /* color: white; */
+    background-color: lightblue!important;
     font-size: 19px!important;
-    /* font-weight: bold; */
-    /* border-color: red; */
-    border-left-width: 7px!important;
+    font-weight: bold;
+    /* border-left-width: 7px!important;
     border-left-style: solid!important;
     border-left-color: blue!important;
-    /* background-color: rgba(147, 255, 47, 0.82); */
-    padding-left: 10px;
+    padding-left: 10px; */
 }
 
 .clbranch {
-    background-color: orange;
-    /* color: white; */
-    /* color: green; */
+  /*   background-color: orange; */
     font-size: 17px!important;
-    /* font-weight: bold; */
-    padding-left: 10px;
+    font-weight: bold;
+    
+  /*   padding-left: 10px;
     border-left-color: gray!important;
     border-left-width: 5px!important;
-    border-left-style: solid;
-
+    border-left-style: solid; */
 }
 
 .clstatment {
-    /* background-color: lightgray;  */
-    color: green;
+  /*   color: green; */
     font-size: 15px!important;
-    /* font-weight: bold; */
-   /*  border-left-color: lightblue!important;
-    border-left-width: 3px!important;
-    border-left-style: solid!important; */
-    padding-left: 10px;
+   /*  padding-left: 10px; */
+}
+
+.clsheet {
+    background-color: beige;
+    border: 3px 3px 3px 3px;
+    border-color: green;
+    border-style: solid;
+    
 }
