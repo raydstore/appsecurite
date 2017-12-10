@@ -37,7 +37,7 @@ export class PropertyComponent implements OnInit {
     { id: 'I', name: 'Entier' },
     { id: 'N', name: 'Numeric' },
     { id: 'V', name: 'Charactère' },
-    { id: 'I', name: 'Date' }
+    { id: 'D', name: 'Date' }
   ];
   dialogVisible = false;
   newMode = false;

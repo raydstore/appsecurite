@@ -12,11 +12,11 @@
   /*   background-color: orange; */
     font-size: 17px!important;
     font-weight: bold;
-    
-  /*   padding-left: 10px;
+    /* margin-left: 10px; */
+   /*  padding-left: 10px;
     border-left-color: gray!important;
     border-left-width: 5px!important;
-    border-left-style: solid; */
+    border-left-style: solid;  */ 
 }
 
 .clstatment {
@@ -29,6 +29,16 @@
     background-color: beige;
     border: 3px 3px 3px 3px;
     border-color: green;
-    border-style: solid;
+    border-style: solid!important;
     
+}
+
+/* .clsheet > .fa-caret-down {
+   margin-left: 40px!important; 
+} */
+
+.ui-treetablr-row .clsheet {
+  border: 3px 3px 3px 3px;
+    border-color: green;
+    border-style: solid!important;
 }

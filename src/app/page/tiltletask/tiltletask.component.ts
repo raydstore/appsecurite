@@ -23,13 +23,13 @@ export class TiltletaskComponent implements OnInit {
     name: '',
     owner: 'ali'
   };
-
+  selectedKind = 'W';
   kinds = [
     { id: 'W', name: 'WorkSheet' },
-    { id: 'W', name: 'Branch' },
-    { id: 'W', name: 'Sheet' }
+    { id: 'B', name: 'Branch' },
+    { id: 'S', name: 'Sheet' }
   ];
-
+  titlenew = 'Worksheet';
   newTitleTask: any = this.templateNewTitleTask;
 
   dialogVisible = false;
@@ -90,6 +90,7 @@ export class TiltletaskComponent implements OnInit {
   buildTitletask() {
     let value: any;
     let childs: TreeNode[];
+    this.data = [];
     for (let titletask of this.titletasks) {
        if (!('idparent' in titletask)) {
          childs = this.getChilds(titletask);
@@ -120,21 +121,36 @@ export class TiltletaskComponent implements OnInit {
     this.newTitleTask = this.templateNewTitleTask;
     this.newTitleTask.kindparent = node.data.kind;
     this.newTitleTask.idparent   = node.data.id;
+//     this.newTitleTask.kind = this.selectedKind;
+    this.selectedKind = 'S';
     this.newWorkSheet = false;
+    this.titlenew     = 'item de verification';
+    this.newTitleTask.kind = this.selectedKind;
     this.showNewDialoge();
+    this.selectedKind = 'w';
   }
 
   addWorkSheet() {
     this.newTitleTask = this.templateNewTitleTask;
     this.newWorkSheet = true;
+    this.titlenew = 'Worksheet';
+    this.newTitleTask.kind = this.selectedKind;
     this.showNewDialoge();
+   // this.newTitleTask.kind = this.selectedKind;
+    this.newTitleTask.name = '';
+    this.selectedKind = 'w';
   } 
+
+  onChangeRadio(event: any) {
+    this.newTitleTask.kind = event.target.value; 
+  }
 
   createTitleTask() {
     this.dialogVisible = false;
     this.titletasks = [this.newTitleTask, ...this.titletasks];
     this.service.create(this.newTitleTask)
       .subscribe(newtt => {
+        this.titletasks = [];
         this.loadData();
       }, (error: AppError) => {
         this.titletasks.splice(0, 1);

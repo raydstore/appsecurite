@@ -3,13 +3,13 @@
 
     <h4 id="idh4">liste des WorkSheet</h4>
 
-    <button class="btn btn-success" (click)="showNewDialoge()">
+    <button class="btn btn-success" (click)="addWorkSheet()">
       <i class="fa fa-plus"></i>
     </button>
 
   </div>
 
-<p-treeTable [value]="data" [style]="{'margin-top':'50px'}" var="node">
+<p-treeTable [value]="data" [style]="{'margin-top':'50px'}" var="node" labelExpand="Expand">
   <p-header>WorkSheet Templating</p-header>
   <p-column field="name" header="Name" styleClass="clsheet"> 
     <div class="clsheet">
@@ -30,46 +30,28 @@
           </span>
       </ng-template>
     </div>
-    <!-- <span class="btnright">
-      <ng-template let-m="rowData" pTemplate=dy""bo>
-        <button class="btn btn-secondary" (click)="addTitleTask(m)">
-          <i class="fa fa-plus"></i>
-        </button>
-        <button class="btn btn-primary" (click)="updateTitleTask(m)">
-          <i class="fa fa-check" aria-hidden="true"></i>
-        </button>
-        <button class="btn btn-danger" (click)="deleteTitleTask(m)">
-          <i class="fa fa-minus" aria-hidden="false"></i>
-        </button>
-      </ng-template>
-    </span> -->
-  </p-column>
-  <!-- <p-column styleClass="col-button btnright" >
     
-  </p-column> -->
+  </p-column>
   
-<!--   <p-column field="size" header="Size" >
-    <ng-template let-node="rowData" pTemplate="body">
-      <input type="text" [(ngModel)]="node.data.size"  [ngClass]="node.styleClass"  style="width:100%;border-width:0px 0px 1px 0px">
-    </ng-template>
-  </p-column> -->
 </p-treeTable>
 </div>
-<p-dialog header="item de verification" [(visible)]="dialogVisible" [responsive]="true" showEffect="fade" [modal]="true" width="250">
+<p-dialog header="Création  {{titlenew}} " [(visible)]="dialogVisible" [responsive]="true" showEffect="fade" [modal]="true" width="250">
   <div class="ui-grid ui-grid-responsive ui-grid-pad" *ngIf="newTitleTask">
-    <div>
+    <div class="bdcontent">
       <span>
-        <label for="iid">id : </label>
-        <input type="text" class="form-control" id="chid" [(ngModel)]="newTitleTask.id" placeholder="Identificateur" readonly>
+        <label for="iid">id : </label><input type="text" class="form-control" id="chid" [(ngModel)]="newTitleTask.id" placeholder="Identificateur" readonly>
       </span>
       <span>
-        <label for="iname">name</label>
-        <input type="text" id="iname" [(ngModel)]="newTitleTask.name" placeholder="l'action">
+        <label for="iname">name</label><input type="text" id="iname" [(ngModel)]="newTitleTask.name" placeholder="l'action">
       </span>
-      <div *ngFor="let kind of kinds" class="radio" >
-        <label>
-          <input type="radio" ngModel name="{{newTitleTask.kind}}" [value]="kind.id"> {{kind.name}}
+      <div *ngFor="let kind of kinds" class="radio" [hidden]="this.selectedKind != 'w'">
+        <label *ngIf="kind.id === 'W' ? false : true">
+          <input 
+                type="radio" [(ngModel)]="newTitleTask.kind"
+                 
+                [value]="kind.id" > {{kind.name}}
         </label>
+        <!-- (change)="onChangeRadio($event)" -->
       </div>
       <button class="btn btn-primary" (click)="createTitleTask()">Valider</button>
       <button class="btn btn-warning" (click)="hideNewDialoge()">cancel</button>
