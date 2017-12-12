@@ -31,6 +31,7 @@ export class ActivityComponent implements OnInit {
 
   lastids: any[];
   lastid: any;
+  titlelist = 'Activité';
 
   constructor(private service: ActivityService, private lastidService: LastidService) {
   }

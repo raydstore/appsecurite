@@ -1,9 +1,13 @@
 <div class="card bg-light">
-    <div class="card-header alCenter">
+    <div class="card-header alCenter cardtitle">
 
-        <h4 id="idh4">Liste des Marque</h4>
+        <h4 class="titleform">
+            <i class="fa fa-list" aria-hidden="true"></i> {{titlelist}}
+        </h4>
 
-        <button class="btn btn-success" (click)="showNewDialoge()"><i class="fa fa-plus"></i></button>
+        <button class="btn btn-success btnright" (click)="showNewDialoge()">
+            <i class="fa fa-plus"></i>
+        </button>
 
     </div>
 
@@ -54,11 +58,11 @@
                 </div>
                 <div class="clupdate">
                     <button class="btn btn-success" (click)="updateLabel(item, name)">
-                    <i class="fa fa-check">Valider</i>
-                </button>
+                        <i class="fa fa-check">Valider</i>
+                    </button>
                     <button class="btn btn-warning" (click)="cancelUpdate(item)">
-                    <i class="fa fa-times">Annuler</i>
-                </button>
+                        <i class="fa fa-times">Annuler</i>
+                    </button>
                 </div>
             </div>
             <!-- </div> -->
@@ -70,17 +74,19 @@
 
 <p-dialog header="Marque Details" [(visible)]="dialogVisible" [responsive]="true" showEffect="fade" [modal]="true" width="250">
     <div class="ui-grid ui-grid-responsive ui-grid-pad" *ngIf="newLabel">
-        <div>
+        <div class="bdcontent">
             <span>
-      <label for="iid" >id : </label>
-      <input type="text" class="form-control" id="chid" [(ngModel)]="newLabel.id" placeholder="Identificateur" readonly>
-    </span>
+                <label for="iid">id : </label>
+                <input type="text" class="form-control" id="chid" [(ngModel)]="newLabel.id" placeholder="Identificateur" readonly>
+            </span>
             <span>
-      <label for="iname">name</label>
-      <input type="text" id="iname" [(ngModel)]="newLabel.name" placeholder="le nom de la marque">
-    </span>
-            <button class="btn btn-primary" (click)="createLabel()">Submit</button>
-            <button class="btn btn-warning" (click)="hideNewDialoge()">cancel</button>
+                <label for="iname">name</label>
+                <input type="text" id="iname" [(ngModel)]="newLabel.name" placeholder="le nom de la marque">
+            </span>
+            <div class="toolbtn">
+                <button class="btn btn-primary" (click)="createLabel()">Submit</button>
+                <button class="btn btn-warning" (click)="hideNewDialoge()">cancel</button>
+            </div>
         </div>
     </div>
 </p-dialog>

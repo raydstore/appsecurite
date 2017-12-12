@@ -2,19 +2,40 @@
   <a class="navbar-brand" href="#">App Securité HSE</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
     aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
+    <span class="navbar-toggler-icon"></span>
+  </button>
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+        <a class="nav-link" routerLinkActive="active current" routerLink="/home">Home
+          <span class="sr-only">(current)</span>
+        </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Fichier</a>
+        <a class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Fichier</a>
+        <div class="dropdown-menu">
+          <a class="dropdown-item" routerLinkActive="active current" routerLink="/activity">Activité</a>
+          <a class="dropdown-item" routerLinkActive="active current" routerLink="/mark">Marque</a>
+          <a class="dropdown-item" routerLinkActive="active current" routerLink="/typeobject">Type Objet</a>
+          <a class="dropdown-item" routerLinkActive="active current" routerLink="/typeoperation">Type Operation</a>
+          <a class="dropdown-item" routerLinkActive="active current" routerLink="/operation">Operation</a>
+          <a class="dropdown-item" routerLinkActive="active current" routerLink="/unitmeasure">Unité de mesure</a>
+          <a class="dropdown-item" routerLinkActive="active current" routerLink="/object">Objet</a>
+          <a class="dropdown-item" routerLinkActive="active current" routerLink="/typeformation">Type Formation</a>
+          <a class="dropdown-item" routerLinkActive="active current" routerLink="/formation">formation</a>
+          <a class="dropdown-item" routerLinkActive="active current" routerLink="/label">Label</a>
+          <a class="dropdown-item" routerLinkActive="active current" routerLink="/site">Site</a>
+        </div>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Operation</a>
+        <a class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Operation</a>
+        <div class="dropdown-menu">
+          <a class="dropdown-item" routerLinkActive="active current" routerLink="/titletask">Worksheet</a>
+          <a class="dropdown-item" routerLinkActive="active current" routerLink="/instance">instance</a>
+          <a class="dropdown-item" routerLinkActive="active current" routerLink="/jobposting">Feuille de poste</a>
+          <a class="dropdown-item" routerLinkActive="active current" routerLink="/alert">alert</a>
+        </div>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="#">Impression</a>
@@ -33,8 +54,9 @@
   </div>
 </nav>
 <div class="page-header climgheader">
-<!--  <h1>Example page header <small>Subtext for header</small></h1> -->
-  <img src="../../../assets/hse_env.png" alt=""><img>
+  <!--  <h1>Example page header <small>Subtext for header</small></h1> -->
+  <img src="../../../assets/hse_env.png" alt="">
+  <img>
 </div>
 <div class="container-fluid">
   <div class="row">
@@ -44,42 +66,45 @@
         <h5 class="card-header  bg-dark text-light">Fichies</h5>
         <div class="card-body">
           <div class="row">
-             <!-- class="col-lg-6" -->
-            <div >
+            <!-- class="col-lg-6" -->
+            <div>
               <nav class="d-none d-sm-block bg-light sidebar mb-0">
                 <ul class="nav nav-pills flex-column my-3">
-              <!-- <ul class="list-unstyled mb-0"> -->
-                <li class="nav-item">
-                  <a class="nav-link" routerLinkActive="active current" routerLink="/activity">Activité</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" routerLinkActive="active current" routerLink="/mark">Marque</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" routerLinkActive="active current" routerLink="/typeobject">Type Objet</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" routerLinkActive="active current" routerLink="/typeoperation">Type Operation</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" routerLinkActive="active current" routerLink="/unitmeasure">Unité de mesure</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" routerLinkActive="active current" routerLink="/object">Objet</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" routerLinkActive="active current" routerLink="/typeformation">Type Formation</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" routerLinkActive="active current" routerLink="/formation">formation</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" routerLinkActive="active current" routerLink="/label">Label</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" routerLinkActive="active current" routerLink="/site">Site</a>
-                </li>
-              </ul>
+                  <!-- <ul class="list-unstyled mb-0"> -->
+                  <li class="nav-item">
+                    <a class="nav-link" routerLinkActive="active current" routerLink="/activity">Activité</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" routerLinkActive="active current" routerLink="/mark">Marque</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" routerLinkActive="active current" routerLink="/typeobject">Type Objet</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" routerLinkActive="active current" routerLink="/typeoperation">Type Operation</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" routerLinkActive="active current" routerLink="/operation">Operation</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" routerLinkActive="active current" routerLink="/unitmeasure">Unité de mesure</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" routerLinkActive="active current" routerLink="/object">Objet</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" routerLinkActive="active current" routerLink="/typeformation">Type Formation</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" routerLinkActive="active current" routerLink="/formation">formation</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" routerLinkActive="active current" routerLink="/label">Label</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" routerLinkActive="active current" routerLink="/site">Site</a>
+                  </li>
+                </ul>
               </nav>
             </div>
             <!-- <div class="col-lg-6">

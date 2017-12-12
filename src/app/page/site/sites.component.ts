@@ -162,6 +162,7 @@ export class SitesComponent implements OnInit {
     console.log(JSON.stringify(siteChild));
     this.service.create(siteChild)
         .subscribe(nd => {
+          this.sites = [];
          // input.value = '';
         //  this.selectedLabel = { name: 'Select Label' };
         //  this.display = false;

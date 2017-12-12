@@ -10,6 +10,7 @@ import { Object } from '../../table/table';
 import { Property } from '../../table/table';
 import { PanelModule } from 'primeng/primeng';
 import { Http, Response } from '@angular/http';
+import { TypeObjectService } from '../../services/type-object.service';
 
 @Component({
   selector: 'app-object',
@@ -49,21 +50,32 @@ export class ObjectComponent implements OnInit {
   /* */
   lastids: any[];
   lastid: any;
+  titlelist = 'Objet';
+  typeObjects: any[];
 
-  constructor(private service: ObjectService, private serviceProperty: PropertyService, private lastidService: LastidService) {
+  constructor(private service: ObjectService, private serviceProperty: PropertyService, 
+    private lastidService: LastidService, private typeObjectService: TypeObjectService) {
   }
 
   ngOnInit() {
-    this.service.getAll()
-      .subscribe(objects => {
-        this.objects = objects;
-      });
+    this.loadData();
     this.serviceProperty.getAll()
       .subscribe(propertys => {
         this.propertys = propertys;
       });
+    this.typeObjectService.getAll()
+      .subscribe(typeObjects => {
+        this.typeObjects = typeObjects;
+      });
     /* this.lastidService.getAll()
       .subscribe(lastids => this.lastids = lastids); */
+  }
+
+  loadData() {
+    this.service.getAll()
+      .subscribe(objects => {
+        this.objects = objects;
+      });
   }
 
   getLastid(name) {
@@ -84,10 +96,11 @@ export class ObjectComponent implements OnInit {
     //  console.log(JSON.stringify(this.newObject));
     // this.objects.splice(0, 0, this.newObject);
     this.objects = [this.newObject, ...this.objects];
-    // console.log('before objects' + JSON.stringify(this.lastids));
+    console.log('before objects' + JSON.stringify(this.newObject));
 
     this.service.create(this.newObject)
       .subscribe(newObject => {
+        this.loadData();
         // this.label['id'] = newlabel.id;
         //  console.log('in side objects' + JSON.stringify(this.lastidService.getItem('object')));
       }, (error: AppError) => {

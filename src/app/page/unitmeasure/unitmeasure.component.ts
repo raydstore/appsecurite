@@ -31,6 +31,7 @@ export class UnitmeasureComponent implements OnInit {
 
   lastids: any[];
   lastid: any;
+  titlelist = 'Unité de Mesure';
 
   constructor(private service: UnitMeasureService, private lastidService: LastidService) {
   }

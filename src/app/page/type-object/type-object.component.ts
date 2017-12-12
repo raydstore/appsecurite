@@ -31,6 +31,7 @@ export class TypeObjectComponent implements OnInit {
 
   lastids: any[];
   lastid: any;
+  titlelist = 'Type Objet';
 
   constructor(private service: TypeObjectService, private lastidService: LastidService) {
   }

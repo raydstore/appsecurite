@@ -31,6 +31,7 @@ export class LabelsComponent implements OnInit {
 
     lastids: any[];
     lastid: any;
+    titlelist = 'Label site';
 
     constructor(private service: LabelService, private lastidService: LastidService) {
     }

@@ -4,6 +4,7 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { TreeTableModule, TreeNode, SharedModule } from 'primeng/primeng';
 import { Titletask } from './../../table/table';
 import { AppError } from '../../common/app-error';
+import { NotFoundError } from '../../common/not-found-error';
 
 @Component({
   selector: 'app-tiltletask',
@@ -35,6 +36,7 @@ export class TiltletaskComponent implements OnInit {
   dialogVisible = false;
   newMode = false;
   newWorkSheet = false;
+  titlelist = 'WorkSheet';
 
   constructor(private service: TitletaskService) {
   }
@@ -109,12 +111,11 @@ export class TiltletaskComponent implements OnInit {
              type: 'branch',
              data: titletask,
              styleClass: 'clworksheet'
-           };
-    };
-    this.data.push(value);
+           }
+         }
+        this.data.push(value);
+       }
     }
-    }
-    console.log(JSON.stringify(this.data));
   }
 
   addTitleTask(node) {
@@ -127,18 +128,20 @@ export class TiltletaskComponent implements OnInit {
     this.titlenew     = 'item de verification';
     this.newTitleTask.kind = this.selectedKind;
     this.showNewDialoge();
-    this.selectedKind = 'w';
+    this.newTitleTask.name = '';
+   // this.selectedKind = 'w';
   }
 
   addWorkSheet() {
     this.newTitleTask = this.templateNewTitleTask;
     this.newWorkSheet = true;
     this.titlenew = 'Worksheet';
+    this.selectedKind = 'W';
     this.newTitleTask.kind = this.selectedKind;
     this.showNewDialoge();
    // this.newTitleTask.kind = this.selectedKind;
     this.newTitleTask.name = '';
-    this.selectedKind = 'w';
+   // this.selectedKind = 'w';
   } 
 
   onChangeRadio(event: any) {
@@ -148,6 +151,7 @@ export class TiltletaskComponent implements OnInit {
   createTitleTask() {
     this.dialogVisible = false;
     this.titletasks = [this.newTitleTask, ...this.titletasks];
+    console.log(JSON.stringify(this.newTitleTask));
     this.service.create(this.newTitleTask)
       .subscribe(newtt => {
         this.titletasks = [];
@@ -162,11 +166,29 @@ export class TiltletaskComponent implements OnInit {
   }
 
   deleteTitleTask(node) {
-
+    console.log(JSON.stringify(node.data));
+    this.service.delete(node.data.id)
+      .subscribe(
+      () => {
+        this.loadData()
+      },
+      (error: Response) => {
+        if (error instanceof NotFoundError) {
+          alert('this post has already been deleted');
+        } else {
+          throw error;
+        }
+      }
+      );
   }
 
   updateTitleTask(node) {
-
+    console.log('update node.data = ' + JSON.stringify(node.data));
+    this.service.update(node.data)
+      .subscribe(updatetitletask => {
+        this.loadData();
+       // console.log(updatemark);
+      });
   }
 
   showNewDialoge() {
@@ -177,6 +199,19 @@ export class TiltletaskComponent implements OnInit {
   hideNewDialoge() {
     this.dialogVisible = false;
     this.newMode = false;
+  }
+
+  setFocusColor(input: HTMLInputElement) {
+    // input: HTMLInputElement
+    // console.log('focus : ' + JSON.stringify(event));
+    input.style.backgroundColor = 'blue';
+    input.style.color = 'white';
+
+  }
+
+  setDefaultColor(input: HTMLInputElement) {
+    input.style.backgroundColor = 'beige';
+    input.style.color = 'black';
   }
 
 }

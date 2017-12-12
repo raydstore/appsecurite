@@ -62,6 +62,8 @@ import { InstanceService } from './services/instance.service';
 import { DPropertyService } from './services/dproperty.service';
 import { NPropertyService } from './services/nproperty.service';
 import { SiteNameComponent } from './page/site-name/site-name.component';
+import { HomeComponent } from './home/home.component';
+import { OperationService } from './services/operation.service';
 
 @NgModule({
   declarations: [
@@ -89,7 +91,9 @@ import { SiteNameComponent } from './page/site-name/site-name.component';
     PropertyComponent,
     VwpropertyComponent,
     InstanceObjectComponent,
-    SiteNameComponent
+    SiteNameComponent,
+    HomeComponent,
+    OperationComponent
   ],
   imports: [
     BrowserModule,
@@ -119,12 +123,14 @@ import { SiteNameComponent } from './page/site-name/site-name.component';
       { path: 'mark', component: MarkComponent },
       { path: 'typeobject', component: TypeObjectComponent },
       { path: 'typeoperation', component: TypeOperationComponent },
+      { path: 'operation', component: OperationComponent },
       { path: 'unitmeasure', component: UnitmeasureComponent },
       { path: 'site', component: SitesComponent },
       { path: 'object', component: ObjectComponent },
       { path: 'operation', component: OperationComponent },
       { path: 'titletask', component: TiltletaskComponent },
       { path: 'instance', component: InstanceComponent },
+      { path: 'home', component: HomeComponent },
       { path: '**', component: NotFoundComponent }
     ])
   ],
@@ -138,6 +144,7 @@ import { SiteNameComponent } from './page/site-name/site-name.component';
     UnitMeasureService,
     TypeObjectService,
     TypeOperationService,
+    OperationService,
     LastidService,
     ObjectService,
     PropertyService,

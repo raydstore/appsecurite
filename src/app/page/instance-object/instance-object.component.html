@@ -1,7 +1,9 @@
 <div class="card bg-light">
-  <div class="card-header alCenter">
+  <div class="card-header alCenter cardtitle">
 
-    <h4 id="idh4">Répartition des {{idObject.name}} </h4>
+    <h4 class="titleform">
+      <i class="fa fa-list" aria-hidden="true"></i> {{titlelist}}
+    </h4>
 
     <button class="btn btn-success btnright" (click)="showNewDialoge()">
       <i class="fa fa-plus"></i>
@@ -53,13 +55,14 @@
           </div>
         </div>
         <div class="form-group row">
-          <label for="chname" class="col-sm-2 col-form-label">name</label>
+          <label for="chname" class="col-sm-2 col-form-label">site</label>
           <div class="col-sm-10">
-            <input type="text" class="form-control" id="chname" [value]="item.name" placeholder="le nom de la marque" #name>
+            <app-site-name [idsite]="item.idsite"></app-site-name>
+            <!-- <input type="text" class="form-control" id="chname" [value]="item.name" placeholder="le nom de la marque" #name> -->
           </div>
         </div>
         <div class="clupdate">
-          <button class="btn btn-success" (click)="updateInstance(item, name)">
+          <button class="btn btn-success" (click)="updateInstance(item, '')">
             <i class="fa fa-check">Valider</i>
           </button>
           <button class="btn btn-warning" (click)="cancelUpdate(item)">
@@ -76,17 +79,33 @@
 
 <p-dialog header="Marque Details" [(visible)]="dialogVisible" [responsive]="true" showEffect="fade" [modal]="true" width="250">
   <div class="ui-grid ui-grid-responsive ui-grid-pad" *ngIf="newInstance">
-    <div>
+    <div class="bdcontent">
       <span>
         <label for="iid">id : </label>
         <input type="text" class="form-control" id="chid" [(ngModel)]="newInstance.id" placeholder="Identificateur" readonly>
       </span>
-      <span>
+      <!-- <span>
         <label for="iname">name</label>
         <input type="text" id="iname" [(ngModel)]="newInstance.name" placeholder="le nom de la marque">
-      </span>
-      <button class="btn btn-primary" (click)="createInstance()">Submit</button>
-      <button class="btn btn-warning" (click)="hideNewDialoge()">cancel</button>
+      </span> -->
+      <div class="form-group">
+        <label for="siteMethode">Site</label>
+        <select [(ngModel)]="newInstance.idsite" id="siteMethode" class="form-control">
+          <option value=""></option>
+          <option *ngFor="let site of sites" [ngValue]="site.id"> {{site.name}} </option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="markMethode">Marque</label>
+        <select [(ngModel)]="newInstance.idmark" id="markMethode" class="form-control">
+          <option value=""></option>
+          <option *ngFor="let mark of marks" [ngValue]="mark"> {{mark.name}} </option>
+        </select>
+      </div>
+      <div class="toolbtn">
+        <button class="btn btn-primary" (click)="createInstance()">Submit</button>
+        <button class="btn btn-warning" (click)="hideNewDialoge()">cancel</button>
+      </div>
     </div>
   </div>
 </p-dialog>

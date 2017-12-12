@@ -1,3 +1,5 @@
+import { MarkService } from './../../services/mark.service';
+import { SiteService } from './../../services/site.service';
 import { PropertyService } from './../../services/property.service';
 import { LastidService } from './../../services/lastid.service';
 import { NotFoundError } from './../../common/not-found-error';
@@ -27,7 +29,7 @@ export class InstanceObjectComponent implements OnInit {
     dateupdate: new Date(),
     id: 0,
     lastuser: 'ali',
-    name: '',
+    idsite: '',
     owner: 'ali'
   };
   dialogVisible = false;
@@ -51,23 +53,41 @@ export class InstanceObjectComponent implements OnInit {
   /* */
   lastids: any[];
   lastid: any;
+  titlelist = 'Répartition objet';
+  sites: any[];
+  marks: any[];
 
-  constructor(private service: InstanceService, private serviceProperty: PropertyService, private lastidService: LastidService) {
+  constructor(private service: InstanceService, private serviceProperty: PropertyService, private lastidService: LastidService,
+              private siteService: SiteService, private markService: MarkService) {
   }
 
   ngOnInit() {
-    console.log('enter object = ' + JSON.stringify(this.idObject));
-    console.log('enter object 2 = ' + this.idObject);
-    this.service.getByQueryParam({'idobject': this.idObject.id})
-      .subscribe(instances => {
-        this.instances = instances;
-      });
-    this.serviceProperty.getAll()
+   /*  console.log('enter object = ' + JSON.stringify(this.idObject));
+    console.log('enter object 2 = ' + this.idObject); */
+    
+    /* this.serviceProperty.getAll()
       .subscribe(propertys => {
         this.propertys = propertys;
+      }); */
+    this.loadData();
+
+    this.siteService.getAll()
+      .subscribe(sites => {
+        this.sites = sites;
+      });
+    this.markService.getAll()
+      .subscribe(marks => {
+        this.marks = marks;
       });
     /* this.lastidService.getAll()
       .subscribe(lastids => this.lastids = lastids); */
+  }
+
+  loadData() {
+    this.service.getByQueryParam({ 'idobject': this.idObject.id })
+      .subscribe(instances => {
+        this.instances = instances;
+      });
   }
 
   getLastid(name) {
@@ -87,11 +107,13 @@ export class InstanceObjectComponent implements OnInit {
     this.dialogVisible = false;
     //  console.log(JSON.stringify(this.newInstance));
     // this.instances.splice(0, 0, this.newInstance);
+    this.newInstance.idobject = this.idObject;
     this.instances = [this.newInstance, ...this.instances];
-    // console.log('before instances' + JSON.stringify(this.lastids));
+    console.log('before instances' + JSON.stringify(this.newInstance));
 
     this.service.create(this.newInstance)
       .subscribe(newInstance => {
+        this.loadData();
         // this.label['id'] = newlabel.id;
         //  console.log('in side instances' + JSON.stringify(this.lastidService.getItem('instance')));
       }, (error: AppError) => {
@@ -127,7 +149,7 @@ export class InstanceObjectComponent implements OnInit {
   }
 
   updateInstance(_instance, input: HTMLInputElement) {
-    _instance.name = input.value;
+    // _instance.name = input.value;
     this.service.update(_instance)
       .subscribe(updateinstance => {
         console.log(updateinstance);
@@ -148,7 +170,8 @@ export class InstanceObjectComponent implements OnInit {
       dateupdate: new Date(),
       id: 0,
       lastuser: 'ali',
-      name: '',
+      idsite: 0,
+     // name: '',
       owner: 'ali'
     };
   }

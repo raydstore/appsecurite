@@ -33,6 +33,7 @@ export class MarkComponent implements OnInit {
 
   lastids: any[];
   lastid: any;
+  titlelist = 'Marque';
 
   constructor(private service: MarkService, private lastidService: LastidService) {
   }

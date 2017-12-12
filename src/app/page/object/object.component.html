@@ -1,9 +1,11 @@
 <div class="card bg-light">
-  <div class="card-header alCenter">
+  <div class="card-header alCenter cardtitle">
 
-    <h4 id="idh4">Liste d'Objets</h4>
+    <h4 class="titleform">
+      <i class="fa fa-list" aria-hidden="true"></i> {{titlelist}}
+    </h4>
 
-    <button class="btn btn-success" (click)="showNewDialoge()">
+    <button class="btn btn-success btnright" (click)="showNewDialoge()">
       <i class="fa fa-plus"></i>
     </button>
 
@@ -61,17 +63,17 @@
           </button>
         </div>
         <div>
-          <app-property [idObject]="item" ></app-property>
+          <app-property [idObject]="item"></app-property>
         </div>
- 
-       </div> 
+
+      </div>
     </ng-template>
   </p-dataTable>
 </div>
 
 <p-dialog header="Marque Details" [(visible)]="dialogVisible" [responsive]="true" showEffect="fade" [modal]="true" width="250">
   <div class="ui-grid ui-grid-responsive ui-grid-pad" *ngIf="newObject">
-    <div>
+    <div class="bdcontent">
       <span>
         <label for="iid">id : </label>
         <input type="text" class="form-control" id="chid" [(ngModel)]="newObject.id" placeholder="Identificateur" readonly>
@@ -80,8 +82,17 @@
         <label for="iname">name</label>
         <input type="text" id="iname" [(ngModel)]="newObject.name" placeholder="le nom de la marque">
       </span>
-      <button class="btn btn-primary" (click)="createObject()">Submit</button>
-      <button class="btn btn-warning" (click)="hideNewDialoge()">cancel</button>
+      <div class="form-group">
+        <label for="typeObjectMethode">Type d'Objet</label>
+        <select [(ngModel)]="newObject.idtypeobject" id="typeObjectMethode" class="form-control">
+          <option value=""></option>
+          <option *ngFor="let typeObject of typeObjects" [ngValue]="typeObject"> {{typeObject.name}} </option>
+        </select>
+      </div>
+      <div class="toolbtn">
+        <button class="btn btn-primary" (click)="createObject()">Submit</button>
+        <button class="btn btn-warning" (click)="hideNewDialoge()">cancel</button>
+      </div>
     </div>
   </div>
 </p-dialog>

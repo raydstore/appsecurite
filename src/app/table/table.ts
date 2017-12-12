@@ -109,3 +109,14 @@ export interface Instance {
     datecreate?: Date;
     dateupdate?: Date;
 }
+
+export interface Operation {
+    id?: number;
+    name?: string;
+    idTypeOperation?: any;
+    owner?: string;
+    lastuser?: string;
+    datecreate?: Date;
+    dateupdate?: Date;
+}
+

@@ -6,23 +6,23 @@
     </button>
   </li>
   <ng-template ngFor let-item [ngForOf]="propertys">
-    <li class="list-group-item"
-    [ngClass]="{
+    <li class="list-group-item" [ngClass]="{
       'list-group-item-secondary': isEqual(item.type, 'N'),
       'list-group-item-success':   isEqual(item.type, 'I'),
       'list-group-item-primary':    isEqual(item.type, 'V'),
       'list-group-item-warning':   isEqual(item.type, 'D')
-    }" ><span class="badge badge-pill badge-info"> {{item.type}} </span>{{item.name}}
+    }">
+      <span class="badge badge-pill badge-info"> {{item.type}} </span>{{item.name}}
       <button class="btn btn-danger btnright" (click)="deleteProperty(item)">
         <i class="fa fa-minus"></i>
       </button>
-  </li>
+    </li>
   </ng-template>
 </ul>
 
 <p-dialog header="Proprieté Details" [(visible)]="dialogVisible" [responsive]="true" showEffect="fade" [modal]="true" width="250">
   <div class="ui-grid ui-grid-responsive ui-grid-pad" *ngIf="newProperty">
-    <div>
+    <div class="bdcontent">
       <span>
         <label for="iid">id : </label>
         <input type="text" class="form-control" id="chid" value="0" placeholder="Identificateur" readonly>
@@ -33,19 +33,17 @@
       </span>
       <div *ngFor="let typeObject of typeObjects" class="radio">
         <label>
-          <input type="radio" [(ngModel)] = "newProperty.type" [value]="typeObject.id" >
-          {{typeObject.name}}
+          <input type="radio" [(ngModel)]="newProperty.type" [value]="typeObject.id"> {{typeObject.name}}
         </label>
       </div>
       <div class="form-group">
         <label for="unitmeasureMethode">Unité de mesure</label>
-        <select [(ngModel)] = "newProperty.idunitmeasure" id="unitmeasureMethode" class="form-control">
+        <select [(ngModel)]="newProperty.idunitmeasure" id="unitmeasureMethode" class="form-control">
           <option value=""></option>
-          <option *ngFor="let unitMesure of unitMeasures" [ngValue]="unitMesure" > {{unitMesure.name}} </option>
+          <option *ngFor="let unitMesure of unitMeasures" [ngValue]="unitMesure"> {{unitMesure.name}} </option>
         </select>
-      </div>  
-      <button class="btn btn-primary"
-         (click)="newProperty.object1 = idObject; newProperty.propertyPK = {id: 0, idobject: idObject.id} ; createProperty()">Submit</button>
+      </div>
+      <button class="btn btn-primary" (click)="newProperty.object1 = idObject; newProperty.propertyPK = {id: 0, idobject: idObject.id} ; createProperty()">Submit</button>
       <button class="btn btn-warning" (click)="hideNewDialoge()">cancel</button>
     </div>
   </div>

@@ -31,6 +31,7 @@ export class TypeOperationComponent implements OnInit {
 
   lastids: any[];
   lastid: any;
+  titlelist = 'Type Opération';
 
   constructor(private service: TypeOperationService, private lastidService: LastidService) {
   }

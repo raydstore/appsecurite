@@ -53,7 +53,33 @@ img {
 }
 
 .btnright {
+    /* display: inline-block; */
     float: right;
+    position: relative;
+    top: -40px;
+}
+
+.alright {
+    float: right;
+   /*  position: absolute; */
+   /* display: inline-block; */
+   /* background-color: blue; */
+   /* width: 280px;
+   height: 40px; */
+}
+
+.cardtitle {
+    height: 70px;
+    margin-top: 15px;
+    margin-bottom: 15px!important;
+    padding-left: 7px;
+    padding-top: 25px!important;
+}
+
+.titleform {
+    width: 350px;
+    /* left: 50px;/* 
+    /* background-color: red; */
 }
 
 .alleft {
@@ -64,6 +90,12 @@ img {
     padding: 8px 8px 8px 8px;
 }
 
+.toolbtn {
+    display: block;
+    margin-top: 10px!important;
+}
+
 .ui-dialog .ui-dialog-content {
     padding: 5px 5px 5px 5px;
 }
+
