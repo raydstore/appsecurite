@@ -14,7 +14,7 @@
     }" >
       <span class="badge badge-pill badge-info"> {{item.type}} </span> {{item.name}}
       <input type="text" id="ivalue" #value [value]="item.value" [attr.placeholder]="'valeur du ' + item.name">
-      <button class="btn btn-danger btndel" (click)="updateProperty(item, value)">
+      <button class="btn btn-danger alright" (click)="updateProperty(item, value)">
         <i class="fa fa-minus"></i>
       </button>
     </li>

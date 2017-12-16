@@ -31,7 +31,7 @@ export class PropertyComponent implements OnInit {
     object1: '',
     owner: 'ali',
     propertyPK: '',
-    type: ''
+    type: 'V'
   };
   typeObjects = [
     { id: 'I', name: 'Entier' },
@@ -50,11 +50,7 @@ export class PropertyComponent implements OnInit {
 
   ngOnInit() {
   //  this.service.getAll()
-    console.log('idobject = ' + JSON.stringify(this.idObject));
-    this.service.getByQueryParam({'idobject': this.idObject.id})
-      .subscribe(propertys => {
-        this.propertys = propertys;
-      });
+    this.loadData();
     /*  */
     this.unitMeasureService.getAll()
       .subscribe(unitMeasures => {
@@ -63,6 +59,13 @@ export class PropertyComponent implements OnInit {
     /*  */
     /* this.lastidService.getAll()
       .subscribe(lastids => this.lastids = lastids); */
+  }
+
+  loadData() {
+    this.service.getByQueryParam({ 'idobject': this.idObject.id })
+      .subscribe(propertys => {
+        this.propertys = propertys;
+      });
   }
 
   getLastid(name) {
@@ -88,6 +91,7 @@ export class PropertyComponent implements OnInit {
 
     this.service.create(this.newProperty)
       .subscribe(newProperty => {
+        this.loadData();
         // this.label['id'] = newlabel.id;
         //  console.log('in side propertys' + JSON.stringify(this.lastidService.getItem('property')));
       }, (error: AppError) => {
@@ -126,6 +130,7 @@ export class PropertyComponent implements OnInit {
     _property.name = input.value;
     this.service.update(_property)
       .subscribe(updateproperty => {
+        this.loadData();
         console.log(updateproperty);
       });
     console.log('name = ' + input.value);
@@ -139,13 +144,8 @@ export class PropertyComponent implements OnInit {
   showNewDialoge() {
     this.dialogVisible = true;
     this.newMode = true;
-    /* this.newProperty = {
-      datecreate: new Date(),
-      dateupdate: new Date(),
-      lastuser: 'ali',
-      name: '',
-      owner: 'ali'
-    }; */
+    this.newProperty.name = '';
+    this.newProperty.type = 'V';
   }
 
   hideNewDialoge() {

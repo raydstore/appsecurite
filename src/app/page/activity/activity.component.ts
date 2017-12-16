@@ -37,12 +37,16 @@ export class ActivityComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.loadData();
+    /* this.lastidService.getAll()
+      .subscribe(lastids => this.lastids = lastids); */
+  }
+
+  loadData() {
     this.service.getAll()
       .subscribe(activitys => {
         this.activitys = activitys;
       });
-    /* this.lastidService.getAll()
-      .subscribe(lastids => this.lastids = lastids); */
   }
 
   getLastid(name) {
@@ -67,6 +71,7 @@ export class ActivityComponent implements OnInit {
 
     this.service.create(this.newActivity)
       .subscribe(newActivity => {
+        this.loadData();
         // this.label['id'] = newlabel.id;
         //  console.log('in side marks' + JSON.stringify(this.lastidService.getItem('mark')));
       }, (error: AppError) => {
@@ -105,6 +110,7 @@ export class ActivityComponent implements OnInit {
     _activity.name = input.value;
     this.service.update(_activity)
       .subscribe(updateactivity => {
+        this.loadData();
         console.log(updateactivity);
       });
     console.log('name = ' + input.value);

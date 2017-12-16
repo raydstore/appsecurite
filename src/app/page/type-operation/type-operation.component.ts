@@ -37,12 +37,16 @@ export class TypeOperationComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.loadData();
+    /* this.lastidService.getAll()
+      .subscribe(lastids => this.lastids = lastids); */
+  }
+
+  loadData() {
     this.service.getAll()
       .subscribe(typeOperations => {
         this.typeOperations = typeOperations;
       });
-    /* this.lastidService.getAll()
-      .subscribe(lastids => this.lastids = lastids); */
   }
 
   getLastid(name) {
@@ -67,6 +71,7 @@ export class TypeOperationComponent implements OnInit {
 
     this.service.create(this.newTypeOperation)
       .subscribe(newTypeOperation => {
+        this.loadData();
         // this.label['id'] = newlabel.id;
         //  console.log('in side typeOperations' + JSON.stringify(this.lastidService.getItem('typeOperation')));
       }, (error: AppError) => {
@@ -105,6 +110,7 @@ export class TypeOperationComponent implements OnInit {
     _typeOperation.name = input.value;
     this.service.update(_typeOperation)
       .subscribe(updatetypeOperation => {
+        this.loadData();
         console.log(updatetypeOperation);
       });
     console.log('name = ' + input.value);
