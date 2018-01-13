@@ -120,3 +120,37 @@ export interface Operation {
     dateupdate?: Date;
 }
 
+export interface Jobposting {
+    id?: number;
+    idAgent?: any;
+    idSite?: any;
+    datefirst?: Date;
+    datelast?: Date;
+    owner?: string;
+    lastuser?: string;
+    datecreate?: Date;
+    dateupdate?: Date;
+}
+
+export interface Listagent {
+    id?: number;
+    agent?: any;
+    jobposting?: any;
+    owner?: string;
+    lastuser?: string;
+    datecreate?: Date;
+    dateupdate?: Date;
+}
+
+export interface Caseagent {
+    id?: number;
+    idAgent?: any;
+    case?: string;
+    idJobposting?: any;
+    datefirst?: Date;
+    datelast?: Date;
+    owner?: string;
+    lastuser?: string;
+    datecreate?: Date;
+    dateupdate?: Date;
+}

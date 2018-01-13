@@ -1,3 +1,5 @@
+import { ListagentService } from './services/listagent.service';
+import { CaseagentService } from './services/caseagent.service';
 import { VPropertyService } from './services/vproperty.service';
 import { IPropertyService } from './services/iproperty.service';
 import { VwpropertyService } from './services/vwproperty.service';
@@ -64,6 +66,9 @@ import { NPropertyService } from './services/nproperty.service';
 import { SiteNameComponent } from './page/site-name/site-name.component';
 import { HomeComponent } from './home/home.component';
 import { OperationService } from './services/operation.service';
+import { JobpostingService } from './services/jobposting.service';
+import { CaseagentComponent } from './page/caseagent/caseagent.component';
+import { ListagentComponent } from './page/listagent/listagent.component';
 
 @NgModule({
   declarations: [
@@ -93,7 +98,9 @@ import { OperationService } from './services/operation.service';
     InstanceObjectComponent,
     SiteNameComponent,
     HomeComponent,
-    OperationComponent
+    OperationComponent,
+    CaseagentComponent,
+    ListagentComponent
   ],
   imports: [
     BrowserModule,
@@ -130,6 +137,7 @@ import { OperationService } from './services/operation.service';
       { path: 'operation', component: OperationComponent },
       { path: 'titletask', component: TiltletaskComponent },
       { path: 'instance', component: InstanceComponent },
+      { path: 'jobposting', component: JobpostingComponent },
       { path: 'home', component: HomeComponent },
       { path: '**', component: NotFoundComponent }
     ])
@@ -154,6 +162,9 @@ import { OperationService } from './services/operation.service';
     IPropertyService,
     NPropertyService,
     VPropertyService,
+    JobpostingService,
+    CaseagentService,
+    ListagentService,
     {provide: ErrorHandler, useClass: AppErrorHandler}
   ],
   bootstrap: [AppComponent]

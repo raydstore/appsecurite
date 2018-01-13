@@ -43,7 +43,7 @@ export class DataService {
         let op: String = '?';
         for (let param in listParam) {
            query += op + param + '=' + listParam[param];
-            op = op === '?' ? '&' : '?';
+            op = op === '?' ? '&&' : '&&';
         }
         console.log('listParam = ' + query);
         return this.http.get(this.url + query)
