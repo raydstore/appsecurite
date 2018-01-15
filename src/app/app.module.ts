@@ -1,3 +1,4 @@
+import { NatureService } from './services/nature.service';
 import { ListagentService } from './services/listagent.service';
 import { CaseagentService } from './services/caseagent.service';
 import { VPropertyService } from './services/vproperty.service';
@@ -69,6 +70,10 @@ import { OperationService } from './services/operation.service';
 import { JobpostingService } from './services/jobposting.service';
 import { CaseagentComponent } from './page/caseagent/caseagent.component';
 import { ListagentComponent } from './page/listagent/listagent.component';
+import { NatureComponent } from './page/nature/nature.component';
+import { ElementComponent } from './page/element/element.component';
+import { RankComponent } from './page/rank/rank.component';
+import { GridComponent } from './page/grid/grid.component';
 
 @NgModule({
   declarations: [
@@ -100,7 +105,11 @@ import { ListagentComponent } from './page/listagent/listagent.component';
     HomeComponent,
     OperationComponent,
     CaseagentComponent,
-    ListagentComponent
+    ListagentComponent,
+    NatureComponent,
+    ElementComponent,
+    RankComponent,
+    GridComponent
   ],
   imports: [
     BrowserModule,
@@ -139,6 +148,7 @@ import { ListagentComponent } from './page/listagent/listagent.component';
       { path: 'instance', component: InstanceComponent },
       { path: 'jobposting', component: JobpostingComponent },
       { path: 'home', component: HomeComponent },
+      { path: 'nature', component: NatureComponent },
       { path: '**', component: NotFoundComponent }
     ])
   ],
@@ -165,6 +175,7 @@ import { ListagentComponent } from './page/listagent/listagent.component';
     JobpostingService,
     CaseagentService,
     ListagentService,
+    NatureService,
     {provide: ErrorHandler, useClass: AppErrorHandler}
   ],
   bootstrap: [AppComponent]

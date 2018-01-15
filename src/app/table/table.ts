@@ -154,3 +154,12 @@ export interface Caseagent {
     datecreate?: Date;
     dateupdate?: Date;
 }
+
+export interface Nature {
+    id?: number;
+    name?: string;
+    owner?: string;
+    lastuser?: string;
+    datecreate?: Date;
+    dateupdate?: Date;
+}
