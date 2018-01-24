@@ -12,8 +12,8 @@
   </div>
 
   <!-- <div class="card-body">immuable="flse"a (onRowSelect)="onRowSelect($event)"-->
-  <p-dataTable [value]="ranks" expandableRows="true" selectionMode="single" immuable="true" [(selection)]="selectedNode" (onNodeExpand)="nodeExpand($event)"
-    rowExpandMode="single" [responsive]="true">
+  <p-dataTable [value]="recommendations" expandableRows="true" selectionMode="single" immuable="true" [(selection)]="selectedNode"
+    (onNodeExpand)="nodeExpand($event)" rowExpandMode="single" [responsive]="true">
     <p-column expander="true" styleClass="col-icon"></p-column>
     <p-column field="id" header="Id"></p-column>
     <p-column field="name" header="Name"></p-column>
@@ -35,7 +35,7 @@
     <p-column field="lastuser" header="par"></p-column>
     <p-column styleClass="col-button">
       <ng-template let-m="rowData" pTemplate="body">
-        <button class="btn btn-danger" (click)="deleteRank(m)">
+        <button class="btn btn-danger" (click)="deleteRecommendation(m)">
           <i class="fa fa-minus"></i>
         </button>
       </ng-template>
@@ -53,11 +53,11 @@
         <div class="form-group row">
           <label for="chname" class="col-sm-2 col-form-label">name</label>
           <div class="col-sm-10">
-            <input type="text" class="form-control" id="chname" [value]="item.name" placeholder="le nom de la niveau" #name>
+            <input type="text" class="form-control" id="chname" [value]="item.name" placeholder="le nom de la marque" #name>
           </div>
         </div>
         <div class="clupdate">
-          <button class="btn btn-success" (click)="updateRank(item, name)">
+          <button class="btn btn-success" (click)="updateRecommendation(item, name)">
             <i class="fa fa-check">Valider</i>
           </button>
           <button class="btn btn-warning" (click)="cancelUpdate(item)">
@@ -72,19 +72,19 @@
   <!-- </div> -->
 </div>
 
-<p-dialog header="Niveau Details" [(visible)]="dialogVisible" [responsive]="true" showEffect="fade" [modal]="true" width="250">
-  <div class="ui-grid ui-grid-responsive ui-grid-pad" *ngIf="newRank">
+<p-dialog header="Marque Details" [(visible)]="dialogVisible" [responsive]="true" showEffect="fade" [modal]="true" width="250">
+  <div class="ui-grid ui-grid-responsive ui-grid-pad" *ngIf="newRecommendation">
     <div class="bdcontent">
       <span>
         <label for="iid">id : </label>
-        <input type="text" class="form-control" id="chid" [(ngModel)]="newRank.id" placeholder="Identificateur" readonly>
+        <input type="text" class="form-control" id="chid" [(ngModel)]="newRecommendation.id" placeholder="Identificateur" readonly>
       </span>
       <span>
         <label for="iname">name</label>
-        <input type="text" id="iname" [(ngModel)]="newRank.name" placeholder="le nom du niveau">
+        <input type="text" id="iname" [(ngModel)]="newRecommendation.name" placeholder="le nom de la marque">
       </span>
       <div class="toolbtn">
-        <button class="btn btn-primary" (click)="createRank()">Submit</button>
+        <button class="btn btn-primary" (click)="createRecommendation()">Submit</button>
         <button class="btn btn-warning" (click)="hideNewDialoge()">cancel</button>
       </div>
     </div>

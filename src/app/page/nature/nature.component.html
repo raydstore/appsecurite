@@ -72,7 +72,7 @@
   <!-- </div> -->
 </div>
 
-<p-dialog header="Marque Details" [(visible)]="dialogVisible" [responsive]="true" showEffect="fade" [modal]="true" width="250">
+<p-dialog header="Nature Details" [(visible)]="dialogVisible" [responsive]="true" showEffect="fade" [modal]="true" width="250">
   <div class="ui-grid ui-grid-responsive ui-grid-pad" *ngIf="newNature">
     <div class="bdcontent">
       <span>
@@ -81,7 +81,7 @@
       </span>
       <span>
         <label for="iname">name</label>
-        <input type="text" id="iname" [(ngModel)]="newNature.name" placeholder="le nom de la marque">
+        <input type="text" id="iname" [(ngModel)]="newNature.name" placeholder="le nom de la nature dommage">
       </span>
       <div class="toolbtn">
         <button class="btn btn-primary" (click)="createNature()">Submit</button>

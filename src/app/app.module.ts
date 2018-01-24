@@ -1,3 +1,4 @@
+import { RankService } from './services/rank.service';
 import { NatureService } from './services/nature.service';
 import { ListagentService } from './services/listagent.service';
 import { CaseagentService } from './services/caseagent.service';
@@ -74,6 +75,13 @@ import { NatureComponent } from './page/nature/nature.component';
 import { ElementComponent } from './page/element/element.component';
 import { RankComponent } from './page/rank/rank.component';
 import { GridComponent } from './page/grid/grid.component';
+import { ElementService } from './services/element.service';
+import { GridService } from './services/grid.service';
+import { AccidentComponent } from './page/accident/accident.component';
+import { AccidentnatureComponent } from './page/accidentnature/accidentnature.component';
+import { DamageComponent } from './page/damage/damage.component';
+import { CauseComponent } from './page/cause/cause.component';
+import { RecommendationComponent } from './page/recommendation/recommendation.component';
 
 @NgModule({
   declarations: [
@@ -109,7 +117,12 @@ import { GridComponent } from './page/grid/grid.component';
     NatureComponent,
     ElementComponent,
     RankComponent,
-    GridComponent
+    GridComponent,
+    AccidentComponent,
+    AccidentnatureComponent,
+    DamageComponent,
+    CauseComponent,
+    RecommendationComponent
   ],
   imports: [
     BrowserModule,
@@ -149,6 +162,9 @@ import { GridComponent } from './page/grid/grid.component';
       { path: 'jobposting', component: JobpostingComponent },
       { path: 'home', component: HomeComponent },
       { path: 'nature', component: NatureComponent },
+      { path: 'element', component: ElementComponent },
+      { path: 'rank', component: RankComponent },
+      { path: 'Grid', component: GridComponent },
       { path: '**', component: NotFoundComponent }
     ])
   ],
@@ -176,6 +192,9 @@ import { GridComponent } from './page/grid/grid.component';
     CaseagentService,
     ListagentService,
     NatureService,
+    ElementService,
+    RankService,
+    GridService,
     {provide: ErrorHandler, useClass: AppErrorHandler}
   ],
   bootstrap: [AppComponent]

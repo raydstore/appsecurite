@@ -3,24 +3,24 @@ import { LastidService } from './../../services/lastid.service';
 import { NotFoundError } from './../../common/not-found-error';
 import { AppError } from './../../common/app-error';
 import { BadInput } from './../../common/bad-input';
-import { RankService } from './../../services/rank.service';
+import { CauseService } from './../../services/cause.service';
 import { Component, OnInit } from '@angular/core';
 import { DataTableModule, SharedModule } from 'primeng/primeng';
-import { Rank } from '../../table/table';
+import { Cause } from '../../table/table';
 import { PanelModule } from 'primeng/primeng';
 import { Http, Response } from '@angular/http';
 
 @Component({
-  selector: 'app-rank',
-  templateUrl: 'rank.component.html',
-  styleUrls: ['./rank.component.css']
+  selector: 'app-cause',
+  templateUrl: 'cause.component.html',
+  styleUrls: ['./cause.component.css']
 })
-export class RankComponent implements OnInit {
-  ranks: any[];
-  selectedRank: Rank;
+export class CauseComponent implements OnInit {
+  causes: any[];
+  selectedCause: Cause;
   selectedNode: TreeNode;
-  // rank: any;
-  newRank: any = {
+  // cause: any;
+  newCause: any = {
     datecreate: new Date(),
     dateupdate: new Date(),
     id: 0,
@@ -33,9 +33,9 @@ export class RankComponent implements OnInit {
 
   lastids: any[];
   lastid: any;
-  titlelist = 'Marque';
+  titlelist = 'Cause';
 
-  constructor(private service: RankService, private lastidService: LastidService) {
+  constructor(private service: CauseService, private lastidService: LastidService) {
   }
 
   ngOnInit() {
@@ -45,8 +45,8 @@ export class RankComponent implements OnInit {
 
   loadData() {
     this.service.getAll()
-      .subscribe(ranks => {
-        this.ranks = ranks;
+      .subscribe(causes => {
+        this.causes = causes;
       });
   }
 
@@ -79,45 +79,45 @@ export class RankComponent implements OnInit {
   }
 
 
-  createRank() {
+  createCause() {
     this.dialogVisible = false;
-    //  console.log(JSON.stringify(this.newRank));
-    // this.ranks.splice(0, 0, this.newRank);
-    this.ranks = [this.newRank, ...this.ranks];
-    // console.log('before ranks' + JSON.stringify(this.lastids));
+    //  console.log(JSON.stringify(this.newCause));
+    // this.causes.splice(0, 0, this.newCause);
+    this.causes = [this.newCause, ...this.causes];
+    // console.log('before causes' + JSON.stringify(this.lastids));
 
-    this.service.create(this.newRank)
-      .subscribe(newRank => {
+    this.service.create(this.newCause)
+      .subscribe(newCause => {
         this.loadData();
-        /*       console.log('newRank' + JSON.stringify(newRank));
+        /*       console.log('newCause' + JSON.stringify(newCause));
               console.log('first lastids' + JSON.stringify(this.lastids));
-              let lid = this.getLastid('rank');
-              console.log('last id rank = ' + lid);
-              console.log('last id rank = ' + JSON.stringify(lid));
-              this.ranks[0].id = lid + 1 ;
+              let lid = this.getLastid('cause');
+              console.log('last id cause = ' + lid);
+              console.log('last id cause = ' + JSON.stringify(lid));
+              this.causes[0].id = lid + 1 ;
               console.log('fnito '); */
       }, (error: AppError) => {
-        this.ranks.splice(0, 1);
+        this.causes.splice(0, 1);
         if (error instanceof BadInput) {
           // this.form.setErrors(originalError);
         } else {
           throw error;
         }
       });
-    // console.log('after ranks' + this.getLastid('rank'));
+    // console.log('after causes' + this.getLastid('cause'));
   }
 
-  deleteRank(_rank: Rank) {
-    let index = this.ranks.indexOf(_rank);
-    this.ranks.splice(index, 1);
-    this.ranks = [...this.ranks];
-    // this.ranks.splice(index, 1);
-    console.log('_rank' + _rank.id + ', ' + JSON.stringify(_rank));
-    this.service.delete(_rank.id)
+  deleteCause(_cause: Cause) {
+    let index = this.causes.indexOf(_cause);
+    this.causes.splice(index, 1);
+    this.causes = [...this.causes];
+    // this.causes.splice(index, 1);
+    console.log('_cause' + _cause.id + ', ' + JSON.stringify(_cause));
+    this.service.delete(_cause.id)
       .subscribe(
       () => { this.loadData(); },
       (error: Response) => {
-        this.ranks.splice(index, 0, _rank);
+        this.causes.splice(index, 0, _cause);
 
         if (error instanceof NotFoundError) {
           alert('this post has already been deleted');
@@ -128,25 +128,25 @@ export class RankComponent implements OnInit {
       );
   }
 
-  updateRank(_rank, input: HTMLInputElement) {
-    _rank.name = input.value;
-    this.service.update(_rank)
-      .subscribe(updaterank => {
+  updateCause(_cause, input: HTMLInputElement) {
+    _cause.name = input.value;
+    this.service.update(_cause)
+      .subscribe(updatecause => {
         this.loadData();
-        console.log(updaterank);
+        console.log(updatecause);
       });
     console.log('name = ' + input.value);
-    console.log(_rank);
+    console.log(_cause);
   }
 
-  cancelUpdate(_rank) {
+  cancelUpdate(_cause) {
     //
   }
 
   showNewDialoge() {
     this.dialogVisible = true;
     this.newMode = true;
-    this.newRank = {
+    this.newCause = {
       datecreate: new Date(),
       dateupdate: new Date(),
       id: 0,
@@ -162,46 +162,46 @@ export class RankComponent implements OnInit {
 
   showDialogToAdd() {
     this.newMode = true;
-    // this.rank = new PrimeCar();
+    // this.cause = new PrimeCar();
     this.dialogVisible = true;
   }
 
   save() {
-    let ranks = [...this.ranks];
+    let causes = [...this.causes];
     if (this.newMode) {
-      ranks.push(this.newRank);
+      causes.push(this.newCause);
     } else {
-      ranks[this.findSelectedRankIndex()] = this.newRank;
+      causes[this.findSelectedCauseIndex()] = this.newCause;
     }
-    this.ranks = ranks;
-    this.newRank = null;
+    this.causes = causes;
+    this.newCause = null;
     this.dialogVisible = false;
   }
 
   delete() {
-    let index = this.findSelectedRankIndex();
-    this.ranks = this.ranks.filter((val, i) => i !== index);
-    this.newRank = null;
+    let index = this.findSelectedCauseIndex();
+    this.causes = this.causes.filter((val, i) => i !== index);
+    this.newCause = null;
     this.dialogVisible = false;
   }
 
   onRowSelect(event) {
     /* this.newMode = false;
-    this.newRank = this.cloneRank(event.data);
+    this.newCause = this.cloneCause(event.data);
     this.dialogVisible = true; */
   }
 
-  cloneRank(c: Rank): Rank {
-    let rank: Rank; // = new Prime();
+  cloneCause(c: Cause): Cause {
+    let cause: Cause; // = new Prime();
     /* for (let prop of c) {
-      rank[prop] = c[prop];
+      cause[prop] = c[prop];
     } */
-    rank = c;
-    return rank;
+    cause = c;
+    return cause;
   }
 
-  findSelectedRankIndex(): number {
-    return this.ranks.indexOf(this.selectedRank);
+  findSelectedCauseIndex(): number {
+    return this.causes.indexOf(this.selectedCause);
   }
 }
 

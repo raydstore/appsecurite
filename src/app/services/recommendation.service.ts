@@ -6,9 +6,10 @@ import { environment } from './../../environments/environment';
 const urlService = environment.urlService;
 
 @Injectable()
-export class ElementService extends DataService {
+export class RecommendationService extends DataService {
   constructor(http: Http) {
-    super(urlService + '/element', http);
+    super(urlService + '/recommendation', http);
   }
+
 
 }
